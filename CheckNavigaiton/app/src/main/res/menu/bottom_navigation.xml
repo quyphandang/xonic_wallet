@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Home"/>
+    <item
+        android:id="@+id/nav_polymer"
+        android:icon="@drawable/ic_polymer_black_24dp"
+        android:title="Polymer"/>
+    <item
+        android:id="@+id/nav_public"
+        android:icon="@drawable/ic_public_black_24dp"
+        android:title="Public"/>
+</menu>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_fragment1">
+
+
+    <fragment
+        android:id="@+id/nav_fragment1"
+        android:name="com.example.checkmenu.One_Fragment"
+        android:label="Wallet"
+        tools:layout="@layout/fragment_1" >
+        <action
+            android:id="@+id/action_nav_fragment1_to_five_Fragment"
+            app:destination="@id/five_Fragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_fragment2"
+        android:name="com.example.checkmenu.Two_Fragment"
+        android:label="Exchange"
+        tools:layout="@layout/fragment_2" />
+
+    <fragment
+        android:id="@+id/nav_fragment3"
+        android:name="com.example.checkmenu.Three_Fragment"
+        android:label="Stake"
+        tools:layout="@layout/fragment_3" />
+
+    <fragment
+        android:id="@+id/nav_fragment4"
+        android:name="com.example.checkmenu.Four_Fragment"
+        android:label="Setting"
+        tools:layout="@layout/fragment_4" />
+    <fragment
+        android:id="@+id/five_Fragment"
+        android:name="com.example.checkmenu.Five_Fragment"
+        android:label="fragment_5"
+        tools:layout="@layout/fragment_5" >
+        <action
+            android:id="@+id/action_five_Fragment_to_six_Fragment"
+            app:destination="@id/six_Fragment" />
+        <action
+            android:id="@+id/action_five_Fragment_to_seven_Fragment"
+            app:destination="@id/seven_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/six_Fragment"
+        android:name="com.example.checkmenu.Six_Fragment"
+        android:label="fragment_6"
+        tools:layout="@layout/fragment_6" />
+    <fragment
+        android:id="@+id/seven_Fragment"
+        android:name="com.example.checkmenu.Seven_Fragment"
+        android:label="fragment_7"
+        tools:layout="@layout/fragment_7" />
+</navigation>

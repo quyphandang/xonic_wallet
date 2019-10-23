@@ -52,13 +52,11 @@ public class WalletUnitTest {
                 accountCreationFee,
                 Key.publicKeyOf(WIF.toPrivateKey(privateKey)),
                 "");
-
         if(resp.getInvoice().getStatus() == 200) {
             System.out.println("success");
         } else {
             System.out.println(resp.getInvoice().getErrorInfo());
         }
-
         // close wallet
         wallet.close();
     }

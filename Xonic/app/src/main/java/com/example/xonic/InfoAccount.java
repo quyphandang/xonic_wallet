@@ -17,7 +17,9 @@ public class InfoAccount extends AppCompatActivity {
     Button back, copyid, nextid;
     TextView usernameid, privatekeyid, publickey ;
     ClipboardManager clipboardManager;
-    public static final String USER = "USER";
+    public static final String USERNAME = "USERNAME";
+    public static final String PRIVATEKEY = "PRIVATEKEY";
+    //public static final String BUNDLE = "BUNDLE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,28 +60,51 @@ public class InfoAccount extends AppCompatActivity {
         nextid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String UserAcc = usernameid.getText().toString();
+                //String UserAcc = usernameid.getText().toString();
                 //Intent intent = new Intent(InfoAccount.this, ImportInfo.class );
                // intent.putExtra(USER,UserAcc);
                 //startActivity(intent);
 
-                byExtrasUser(UserAcc);
+                //byExtrasUser(UserAcc);
+                //Intent intent = new Intent(getApplicationContext(), ImportInfo.class);
+                //startActivity(intent);
+                String userName = usernameid.getText().toString();
+                String privateKey = privatekeyid.getText().toString();
+                byExtrasUser(userName,privateKey);
             }
         });
     }
     public void setDataByExtras(){
+
         Intent intent = getIntent();
+        //Bundle bundle = intent.getBundleExtra(AddUseName.BUNDLE);
+        //String USERNAME = bundle.getString(AddUseName.USERNAME);
+        //String PRIVATEKEY = bundle.getString(AddUseName.PRIVATEKEY);
+        //String PUBLICKEY = bundle.getString(AddUseName.PUBLICKEY);
         String USERNAME = intent.getStringExtra(AddUseName.USERNAME);
         String PRIVATEKEY = intent.getStringExtra(AddUseName.PRIVATEKEY);
         String PUBLICKEY = intent.getStringExtra(AddUseName.PUBLICKEY);
+        /*
+        Bundle bundle = getIntent().getExtras();
+        //String USERNAME1 = bundle.getString(USERNAME,AddUseName.USERNAME);
+        //String USERNAME = bundle.getString(AddUseName.USERNAME);
+        //String PRIVATEKEY = bundle.getString(AddUseName.PRIVATEKEY);
+        //String PUBLICKEY = bundle.getString(AddUseName.PUBLICKEY);
+        */
         usernameid.setText(USERNAME);
         privatekeyid.setText(PRIVATEKEY);
         publickey.setText(PUBLICKEY);
     }
 
-    public void byExtrasUser(String UserAcc){
+    public void byExtrasUser(String userName, String privateKey){
         Intent intent = new Intent(InfoAccount.this, ImportInfo.class);
-        intent.putExtra(USER,UserAcc);
+        //Bundle bundle = new Bundle();
+        //Intent intent = new Intent(getApplicationContext(), ImportInfo.class);
+        //bundle.putString(USERNAME,USERNAME);
+        //bundle.putString(PRIVATEKEY,PRIVATEKEY);
+        //intent.putExtra(BUNDLE,bundle);
+        intent.putExtra(USERNAME,userName);
+        intent.putExtra(PRIVATEKEY,privateKey);
         startActivity(intent);
     }
 }

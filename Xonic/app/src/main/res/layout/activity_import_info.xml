@@ -83,15 +83,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <TextView
-        android:id="@+id/showbalanceid"
-        android:layout_width="320dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="64dp"
-        android:text="SHOW BALANCE"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -36,6 +36,7 @@ public class AddUseName extends AppCompatActivity {
     public static final String USERNAME = "USERNAME";
     public static final String PRIVATEKEY = "PRIVATEKEY";
     public static final String PUBLICKEY = "PUBLICKEY";
+    //public static final String BUNDLE = "BUNDLE";
     private static final String keyStorePassword = "my password";
     private static File getKeyStoreFile() {
         File file = null;
@@ -75,12 +76,14 @@ public class AddUseName extends AppCompatActivity {
                 if (match == true){
                     username.setTextColor(0xFF2D0775);
                     // open info account
+                    infoacc.setVisibility(View.VISIBLE);
                     infoacc.setTextColor(0xFFFFFFFF);
                     //infoacc.setBackgroundColor(0xFF2D0775);
                     infoacc.setBackgroundResource(R.drawable.boder_30);
                     infoacc.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+
                             Wallet wallet = new Wallet("34.195.63.116", 8888, "test");
                             String userName = username.getText().toString();
                             String privateKey = WIF.fromPrivateKey(Key.generate());
@@ -99,6 +102,7 @@ public class AddUseName extends AppCompatActivity {
 
                             if(resp.getInvoice().getStatus() == 200) {
                                 byExtras(userName, privateKey, publicKey);
+                                //byExtrasUser(userName,privateKey);
                             } else {
                                 Toast.makeText(AddUseName.this, "Account already exists!", Toast.LENGTH_SHORT).show();
                             }
@@ -108,6 +112,14 @@ public class AddUseName extends AppCompatActivity {
                     username.setTextColor(0xFFF10303);
                     infoacc.setTextColor(0xFF2D0775);
                     infoacc.setBackgroundResource(R.drawable.bordered);
+                    infoacc.setVisibility(View.INVISIBLE);
+//                    infoacc.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//
+//                        }
+//                    });
+
                 }
 
             }
@@ -117,7 +129,8 @@ public class AddUseName extends AppCompatActivity {
         });
     }
     public void byExtras(String userName, String privateKey, String publicKey){
-        Intent intent = new Intent(AddUseName.this, InfoAccount.class);
+        //Intent intent = new Intent(AddUseName.this, InfoAccount.class);
+        Intent intent = new Intent(getApplicationContext(), InfoAccount.class);
         intent.putExtra(USERNAME,userName);
         intent.putExtra(PUBLICKEY,publicKey);
         intent.putExtra(PRIVATEKEY,privateKey);

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    android:weightSum="40"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="#FFFFFF"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="36"
+        android:layout_height="0dp"
+        android:background="#FFFFFF"
+        android:layout_width="match_parent">
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_weight="4"
+        android:layout_height="0dp"
+        android:background="#FFFFFF"
+        android:layout_width="match_parent">
+
+        <Button
+            android:id="@+id/walletid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginBottom="8dp"
+            android:background="#00791717"
+            android:drawableTop="@drawable/icon_violet_30"
+            android:text="HOME"
+            android:layout_weight="1"
+            android:textColor="#2D0775"/>
+        <Button
+            android:id="@+id/exchangeid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginBottom="8dp"
+            android:background="#00791717"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ex_pris_30"
+            android:text="SKIRT"
+            android:textColor="#2f3542"/>
+        <Button
+            android:id="@+id/stakeid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginBottom="8dp"
+            android:background="#00791717"
+            android:drawableTop="@drawable/stake_pres_30"
+            android:text="SHORT"
+            android:layout_weight="1"
+            android:textColor="#2f3542"/>
+        <Button
+            android:id="@+id/settingid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginBottom="8dp"
+            android:background="#00791717"
+            android:drawableTop="@drawable/setting_pris_30"
+            android:text="JUMP"
+            android:layout_weight="1"
+            android:textColor="#2f3542"/>
+
+    </LinearLayout>
+
+</LinearLayout>

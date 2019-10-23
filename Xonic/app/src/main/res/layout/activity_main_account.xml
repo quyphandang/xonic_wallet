@@ -7,133 +7,37 @@
     android:background="#FFFFFF"
     tools:context=".MainAccount">
 
-    <TextView
-        android:id="@+id/mainid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="WALLET"
-        android:textColor="#2D0775"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/exchangeid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="EXCHANGE"
-        android:textColor="#2f3542"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/mainid" />
-
-    <TextView
-        android:id="@+id/stakeid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginLeft="48dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="STAKE"
-        android:textColor="#2f3542"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/exchangeid" />
-
-    <TextView
-        android:id="@+id/setting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:layout_marginRight="24dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="SETTING"
-        android:textColor="#2f3542"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <ImageView
-        android:id="@+id/imageicon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="38dp"
-        android:layout_marginLeft="38dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/mainid"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/icon_violet" />
-
-    <ImageView
-        android:id="@+id/imageex"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="78dp"
-        android:layout_marginLeft="78dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/exchangeid"
-        app:layout_constraintStart_toEndOf="@+id/imageicon"
-        app:srcCompat="@drawable/ex_pres" />
-
-    <ImageView
-        android:id="@+id/imagestake"
-        android:layout_width="27dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="74dp"
-        android:layout_marginLeft="74dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/stakeid"
-        app:layout_constraintStart_toEndOf="@+id/imageex"
-        app:srcCompat="@drawable/stake_pres" />
-
-    <ImageView
-        android:id="@+id/imagesetting"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/setting"
-        app:layout_constraintStart_toEndOf="@+id/imagestake"
-        app:srcCompat="@drawable/seeting_gres" />
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="410dp"
-        android:layout_height="0.4dp"
-        android:background="#2f3542"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="623dp" />
-
-    <TextView
-        android:id="@+id/balanceid"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/nav_view"
         android:layout_width="0dp"
-        android:layout_height="130dp"
-        android:background="#2D0775"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:background="?android:attr/windowBackground"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:itemTextColor="@drawable/bottom_nav_color"
+        app:itemIconTint="@drawable/bottom_nav_color"
+        app:menu="@menu/bottom_navigation" />
 
-    <ImageView
-        android:id="@+id/qrid"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="parent"
+    <fragment
+        android:id="@+id/fragment_container"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginBottom="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@id/nav_view"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/qr_white" />
+        app:navGraph="@navigation/mobile_navigation" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

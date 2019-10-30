@@ -15,7 +15,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import static com.example.xonic.MainAccount.userName;
+import static com.example.xonic.Global.userName;
+//import static com.example.xonic.MainAccount.userName;
 import static com.example.xonic.MainAccount.wallet;
 
 public class DespositWithdrawFragment extends Fragment {

@@ -2,24 +2,14 @@ package com.example.xonic;
 
 
 public class ExchangeInfo {
-    private String amount;
     private String balance;
     private int iconCoin;
     private String icon;
 
-    public ExchangeInfo(String amount, String balance, int iconCoin, String icon) {
-        this.amount = amount;
+    public ExchangeInfo( String balance, int iconCoin, String icon) {
         this.balance = balance;
         this.iconCoin = iconCoin;
         this.icon = icon;
-    }
-
-    public String getName() {
-        return amount;
-    }
-
-    public void setName(String amount) {
-        this.amount = amount;
     }
 
     public String getBalance() {

@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/nav_wallet"
-        android:icon="@drawable/stake_violet"
+        android:icon="@drawable/home_24dp"
         android:title="Wallet"/>
     <item
         android:id="@+id/nav_exchange"

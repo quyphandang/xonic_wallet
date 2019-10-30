@@ -19,7 +19,7 @@ public class ImportMnemonic extends AppCompatActivity {
 
     Button nextinfo,back;
     public static final String USERNAME = "USERNAME";
-    public static final String MNEMONIC = "MNEMONIC";
+    public static final String PRIVATEKEY = "PRIVATEKEY";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,11 +42,15 @@ public class ImportMnemonic extends AppCompatActivity {
                 String userName = accountname.getText().toString();
                 try {
                     String inpublicKey = WIF.fromPublicKey(Key.publicKeyOf(Key.generateFromMnemonic(mnemoNic)));
+                    //WIF.fromPrivateKey(Key.publicKeyOf(Key.generateFromMnemonic(mnemoNic)))
+
+                         String privateKey   =   WIF.fromPrivateKey(Key.generateFromMnemonic(mnemoNic));
+
                     try {
                         String inpublicKeyAccount = WIF.fromPublicKey(wallet.getAccountByName(userName).getInfo().getPublicKey());
                         if (inpublicKey.equals(inpublicKeyAccount)){
-                            Toast.makeText(getApplicationContext(), "Login Success!" , Toast.LENGTH_SHORT).show();
-                            //byExtras(userName,mnemoNic);
+                            //Toast.makeText(getApplicationContext(), a , Toast.LENGTH_SHORT).show();
+                            byExtras(userName,privateKey);
                         }else{
                             Toast.makeText(getApplicationContext(), "Account and Mnemonic did not match. Try Again!" , Toast.LENGTH_SHORT).show();
                         }
@@ -61,11 +65,11 @@ public class ImportMnemonic extends AppCompatActivity {
             }
         });
     }
-    public void byExtras(String userName, String mnemoNic){
+    public void byExtras(String userName, String privateKey){
         //Intent intent = new Intent(AddUseName.this, InfoAccount.class);
         Intent intent = new Intent(getApplicationContext(), MainAccount.class);
         intent.putExtra(USERNAME,userName);
-        intent.putExtra(MNEMONIC,mnemoNic);
+        intent.putExtra(PRIVATEKEY,privateKey);
         startActivity(intent);
     }
 }

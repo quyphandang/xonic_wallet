@@ -51,13 +51,11 @@ public class ExchangeInfoAdapter extends BaseAdapter {
         //getActivity().
         convertView = inflater1.inflate(layout, null);
         //TextView Name = (TextView) convertView.findViewById(R.id.nameid);
-        EditText Amount = (EditText) convertView.findViewById(R.id.amount1);
         TextView Balance = (TextView) convertView.findViewById(R.id.balance1);
         ImageView IconCoin = (ImageView) convertView.findViewById(R.id.imageicon);
         TextView Icon = (TextView) convertView.findViewById(R.id.icon);
-        String aaa = Amount.getText().toString();
+        //String aaa = Amount.getText().toString();
         ExchangeInfo exchangeinfo = listExchangeinfo.get(position);
-        Amount.setText(exchangeinfo.getName());
         Balance.setText(exchangeinfo.getBalance());
         IconCoin.setImageResource(exchangeinfo.getIconCoin());
         Icon.setText(exchangeinfo.getIcon());

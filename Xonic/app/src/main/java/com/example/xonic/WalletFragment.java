@@ -22,13 +22,16 @@ import java.util.ArrayList;
 
 import io.contentos.android.sdk.Wallet;
 
-import static com.example.xonic.MainAccount.privateKey;
-import static com.example.xonic.MainAccount.userName;
-
+import static com.example.xonic.Global.privateKey;
+import static com.example.xonic.Global.userName;
+//import static com.example.xonic.MainAccount.privateKey;
+//import static com.example.xonic.MainAccount.userName;
+import static com.example.xonic.MainAccount.wallet;
+import com.example.xonic.MainAccount;
 
 //public class WalletFragment extends Fragment {
 public class WalletFragment extends ListFragment {
-    TextView balanceid;
+    TextView balanceid, usernameid;
     ArrayList<ListCoin> arrayListCoin;
     ListCoinAdapter adapter;
     //public static String balance2 =
@@ -41,20 +44,33 @@ public class WalletFragment extends ListFragment {
 
         balanceid = (TextView) view.findViewById(R.id.balanceid);
         String Name = userName;
+        //String
+        //String Name1 = user;
+        //MainAccount
         String Key = privateKey;
         Wallet wallet = new Wallet("34.195.63.116", 8888, "test");
         long balance = wallet.getAccountByName(userName).getInfo().getCoin().getValue();
         double balance2 = (double) balance/1000000;
+
+        long balancevest = wallet.getAccountByName(userName).getInfo().getVest().getValue();
+        double balance2vest = (double) balancevest/1000000;
+
+        long balancestake = wallet.getAccountByName(userName).getInfo().getStakeVestFromMe().getValue();
+        double balance2stake = (double) balancestake/1000000;
 //        String balance2 = getArguments().getString("Balance");
 //        String UserName = getArguments().getString("Username");
 //        String PrivateKey = getArguments().getString("Privatekey");
         //String b = userName;
-        balanceid.setText(String.valueOf(balance2));
+        balanceid.setText(String.valueOf(balance2) + " COS");
+
+        usernameid = (TextView) view.findViewById(R.id.usernameid);
+        usernameid.setText(userName);
         //xml listview: @+id/listcoinviewid
         //listcoinviewid = (ListView) view.findViewById(R.id.listcoinviewid);
             arrayListCoin = new ArrayList<>();
-            arrayListCoin.add(new ListCoin("Contentos", String.valueOf(balance2), R.drawable.iconcos));
-            arrayListCoin.add(new ListCoin("Vest", "Balance", R.drawable.iconcos));
+            arrayListCoin.add(new ListCoin("Contentos", String.valueOf(balance2), R.drawable.icon_cos2));
+            arrayListCoin.add(new ListCoin("Vest", String.valueOf(balance2vest), R.drawable.icon_vest));
+            arrayListCoin.add(new ListCoin("Chicken", String.valueOf(balance2stake), R.drawable.icon_stake));
             //adapter = new ListCoinAdapter(getActivity(),android.R.layout.simple_list_item_1, arrayListCoin);
             adapter = new ListCoinAdapter(getActivity(), R.layout.list_coin_view, arrayListCoin);
             setListAdapter(adapter);
@@ -64,19 +80,25 @@ public class WalletFragment extends ListFragment {
 
     @Override
     public void onListItemClick(@NonNull ListView l, @NonNull View v, int position, long id) {
-        //Toast.makeText(getActivity() , "User Name is incorrect" , Toast.LENGTH_SHORT).show();
-//        Bundle bundle_to_desposit_withdraw = new Bundle();
-//        bundle_to_desposit_withdraw.putString("UserName", getArguments().getString("Username"));
-//        bundle_to_desposit_withdraw.putString("PrivateKey", getArguments().getString("Privatekey"));
-//        bundle_to_desposit_withdraw.putString("Balance", getArguments().getString("Balance"));
-////
+        if (position == 0){
         FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         DespositWithdrawFragment despositWithdrawFragment = new DespositWithdrawFragment();
-//        despositWithdrawFragment.setArguments(bundle_to_desposit_withdraw);
         fragmentTransaction.replace(R.id.fragment_container, despositWithdrawFragment);
-////        //fragmentTransaction.addToBackStack("Desposit and Withdraw");
         fragmentTransaction.commit();
+        }else if(position == 1){
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+           // DespositWithdrawFragment despositWithdrawFragment = new DespositWithdrawFragment();
+            fragmentTransaction.replace(R.id.fragment_container, new ExchangeFragment());
+            fragmentTransaction.commit();
+        }else {
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            // DespositWithdrawFragment despositWithdrawFragment = new DespositWithdrawFragment();
+            fragmentTransaction.replace(R.id.fragment_container, new StakeFragment());
+            fragmentTransaction.commit();
+        }
 
         super.onListItemClick(l, v, position, id);
     }

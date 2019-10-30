@@ -20,6 +20,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 //import org.junit.*;
 
+//import es.dmoral.toasty.Toasty;
 import io.contentos.android.sdk.Network;
 import io.contentos.android.sdk.Wallet;
 import io.contentos.android.sdk.crypto.Key;
@@ -28,7 +29,9 @@ import io.contentos.android.sdk.prototype.Type;
 import io.contentos.android.sdk.rpc.Grpc;
 import io.contentos.android.sdk.rpc.RpcClient;
 
-
+class valuei {
+    public static int i = 0;
+}
 public class AddUseName extends AppCompatActivity {
     Button back;
     EditText username;
@@ -74,52 +77,15 @@ public class AddUseName extends AppCompatActivity {
                 Matcher matcher = pattern.matcher(UserName);
                 boolean match = matcher.matches();
                 if (match == true){
-                    username.setTextColor(0xFF2D0775);
-                    // open info account
-                    infoacc.setVisibility(View.VISIBLE);
+                    valuei.i = 1;
+                    username.setTextColor(0xFF00BA47);
                     infoacc.setTextColor(0xFFFFFFFF);
-                    //infoacc.setBackgroundColor(0xFF2D0775);
                     infoacc.setBackgroundResource(R.drawable.boder_30);
-                    infoacc.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                            Wallet wallet = new Wallet("34.195.63.116", 8888, "test");
-                            String userName = username.getText().toString();
-                            String privateKey = WIF.fromPrivateKey(Key.generate());
-                            String publicKey = WIF.fromPublicKey(Key.publicKeyOf(WIF.toPrivateKey(privateKey)));
-                                wallet.openKeyStore(getKeyStoreFile(), keyStorePassword);
-                                wallet.addKey("quyphancos", "3uXkdUTCdMNFEDoGcqrVeuSbGCv4ZcUndTYMjFnU7SjaDN597q");
-                                //wallet.addKey("quyphancos", "3uXkdUTCdMNFEDoGcqrVeuSbGCv4ZcUndTYMjFnU7SjaD59ef"); //failse private
-                                //wallet.addKey("quyphancos","4ZSzaybvskVimm1WoHmipE4XFpMYz4pHSHhxGt6w5mLKC7xyS1"); //acc mainnet
-                                long accountCreationFee = wallet.getChainState().getState().getDgpo().getAccountCreateFee().getValue();
-                            Grpc.BroadcastTrxResponse resp = wallet.account("quyphancos").accountCreate(
-                                    "quyphancos",
-                                    userName,
-                                    accountCreationFee,
-                                    Key.publicKeyOf(WIF.toPrivateKey(privateKey)),
-                                    "");
-
-                            if(resp.getInvoice().getStatus() == 200) {
-                                byExtras(userName, privateKey, publicKey);
-                                //byExtrasUser(userName,privateKey);
-                            } else {
-                                Toast.makeText(AddUseName.this, "Account already exists!", Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
                 } else{
+                    valuei.i = 0;
                     username.setTextColor(0xFFF10303);
-                    infoacc.setTextColor(0xFF2D0775);
+                    infoacc.setTextColor(0xFF00BA47);
                     infoacc.setBackgroundResource(R.drawable.bordered);
-                    infoacc.setVisibility(View.INVISIBLE);
-//                    infoacc.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//
-//                        }
-//                    });
-
                 }
 
             }
@@ -127,6 +93,46 @@ public class AddUseName extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
             }
         });
+
+        infoacc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (valuei.i == 0){
+                    //Toasty.error(AddUseName.this, "Incorrectly. Please again!", Toast.LENGTH_SHORT, true).show();
+                    Toast.makeText(AddUseName.this, "Incorrectly. Please again!", Toast.LENGTH_SHORT).show();
+                    //Toast toast = Toast.makeText(AddUseName.this, "Incorrectly. Please again!", Toast.LENGTH_SHORT);
+                    //toast.setGravity();
+                }else{
+
+                Wallet wallet = new Wallet("34.195.63.116", 8888, "test");
+                String userName = username.getText().toString();
+                String privateKey = WIF.fromPrivateKey(Key.generate());
+                String publicKey = WIF.fromPublicKey(Key.publicKeyOf(WIF.toPrivateKey(privateKey)));
+                wallet.openKeyStore(getKeyStoreFile(), keyStorePassword);
+                wallet.addKey("quyphancos", "3uXkdUTCdMNFEDoGcqrVeuSbGCv4ZcUndTYMjFnU7SjaDN597q");
+                //wallet.addKey("quyphancos", "3uXkdUTCdMNFEDoGcqrVeuSbGCv4ZcUndTYMjFnU7SjaD59ef"); //failse private
+                //wallet.addKey("quyphancos","4ZSzaybvskVimm1WoHmipE4XFpMYz4pHSHhxGt6w5mLKC7xyS1"); //acc mainnet
+                long accountCreationFee = wallet.getChainState().getState().getDgpo().getAccountCreateFee().getValue();
+                Grpc.BroadcastTrxResponse resp = wallet.account("quyphancos").accountCreate(
+                        "quyphancos",
+                        userName,
+                        accountCreationFee,
+                        Key.publicKeyOf(WIF.toPrivateKey(privateKey)),
+                        "");
+
+                if(resp.getInvoice().getStatus() == 200) {
+                    //Toasty.success(AddUseName.this, "Success!", Toast.LENGTH_SHORT, true).show();
+                    byExtras(userName, privateKey, publicKey);
+                    //byExtrasUser(userName,privateKey);
+                } else {
+                    //Toasty.warning(AddUseName.this, "Account already exists!", Toast.LENGTH_SHORT, true).show();
+                    Toast.makeText(AddUseName.this, "Account already exists!", Toast.LENGTH_SHORT).show();
+                }
+                }
+            }
+        });
+
     }
     public void byExtras(String userName, String privateKey, String publicKey){
         //Intent intent = new Intent(AddUseName.this, InfoAccount.class);

@@ -23,9 +23,10 @@
             android:layout_marginBottom="8dp"
             android:background="#FFFFFF"
             android:text="Back"
-            android:textColor="#2D0775" />
+            android:textColor="@color/colorBackground" />
 
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -34,46 +35,43 @@
         android:gravity="bottom|center_horizontal"
         android:orientation="vertical">
 
-
         <ImageView
             android:id="@+id/imageqr"
             android:layout_width="200dp"
             android:layout_height="200dp"
+            android:padding="10dp"
             app:srcCompat="@drawable/qr_code_icon" />
+
     </LinearLayout>
 
     <TextView
         android:id="@+id/publicid"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="2"
         android:fontFamily="@font/roboto_regular"
-        android:gravity="top|center_vertical"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp"
+        android:gravity="center_horizontal|top"
         android:text="publickey"
-        android:textColor="#2C3E50"
+        android:textColor="@color/colorBackground"
         android:textIsSelectable="false"
-        android:textSize="18sp" />
+        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="3"
         android:background="#FFFFFF"
-        android:gravity="center|center_horizontal"
+        android:gravity="center_horizontal|top"
         android:orientation="vertical">
 
 
-        <Button
+        <ImageView
             android:id="@+id/copyid"
-            android:layout_width="140dp"
-            android:layout_height="80dp"
-            android:drawableTop="@drawable/copy__24dp"
-            android:text="Copy"
-            android:textSize="14sp"
-            android:textColor="#2D0775"
-            android:background="#FFFFFF"/>
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/border_imageview_full"
+            android:padding="10dp"
+            app:srcCompat="@drawable/copy_white_24dp" />
 
     </LinearLayout>
 

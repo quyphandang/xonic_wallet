@@ -16,15 +16,19 @@
         android:background="#001A1818"
         android:fontFamily="@font/roboto_regular"
         android:text="back"
-        android:textColor="#2D0775"
+        android:textColor="@color/colorBackground"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="0dp" />
 
     <TextView
         android:id="@+id/importprivate"
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:text="Account Name"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,14 +38,18 @@
 
     <EditText
         android:id="@+id/accountname"
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/border_10"
         android:ems="10"
-        android:padding="10dp"
         android:hint="Account Name"
         android:inputType="textPersonName"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/importprivate" />
@@ -67,7 +75,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_violet" />
+        app:srcCompat="@drawable/icon_green" />
 
     <TextView
         android:id="@+id/imageid"
@@ -76,7 +84,7 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/droid"
         android:textSize="18sp"
-        android:textColor="#2D0775"
+        android:textColor="@color/colorText"
         android:text="XONIC WALLET"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -84,9 +92,13 @@
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:text="Private Key"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -96,14 +108,18 @@
 
     <EditText
         android:id="@+id/privatekey"
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/border_10"
         android:ems="10"
         android:hint="Private Key"
-        android:padding="10dp"
         android:inputType="textPersonName"
+        android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"

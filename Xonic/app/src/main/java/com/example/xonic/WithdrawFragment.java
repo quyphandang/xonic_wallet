@@ -26,7 +26,8 @@ import org.json.JSONObject;
 
 import io.contentos.android.sdk.encoding.WIF;
 
-import static com.example.xonic.MainAccount.userName;
+//import static com.example.xonic.MainAccount.userName;
+import static com.example.xonic.Global.userName;
 import static com.example.xonic.MainAccount.wallet;
 
 public class WithdrawFragment extends Fragment {

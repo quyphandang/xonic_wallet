@@ -59,6 +59,8 @@ dependencies {
     // compile project(path: ':sdk')
     implementation project(path: ':sdk')
     //implementation 'org.junit.jupiter:junit-jupiter-api'
+
+    //implementation 'com.github.GrenderG:Toasty:1.4.2'
 }
 
 /*

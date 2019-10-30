@@ -20,8 +20,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 
-import static com.example.xonic.MainAccount.privateKey;
-import static com.example.xonic.MainAccount.userName;
+//import static com.example.xonic.MainAccount.privateKey;
+//import static com.example.xonic.MainAccount.userName;
+import static com.example.xonic.Global.privateKey;
+import static com.example.xonic.Global.userName;
 import static com.example.xonic.MainAccount.wallet;
 
 public class WithdrawConformFragment extends ListFragment {

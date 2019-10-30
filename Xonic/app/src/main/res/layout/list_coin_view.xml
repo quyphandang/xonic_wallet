@@ -18,7 +18,7 @@
         android:fontFamily="@font/roboto_regular"
         android:gravity="center_horizontal|center_vertical"
         android:text="Name"
-        android:textColor="#2D0775"
+        android:textColor="@color/colorText"
         android:textSize="20sp" />
 
     <TextView
@@ -33,7 +33,7 @@
         android:layout_marginTop="15dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="Balance"
-        android:textColor="#2D0775"
+        android:textColor="@color/colorText"
         android:textSize="20sp" />
 
 </RelativeLayout>

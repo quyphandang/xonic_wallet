@@ -11,12 +11,13 @@
         android:id="@+id/balanceid"
         android:layout_width="0dp"
         android:layout_height="130dp"
-        android:background="#2D0775"
-        android:fontFamily="@font/roboto_regular"
-        android:gravity="center_horizontal|center_vertical"
+        android:background="@color/colorText"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center_horizontal|top"
+        android:paddingTop="40dp"
+        android:text="BALANCE"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
-        android:text="BALANCE"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,11 +38,25 @@
         android:id="@android:id/list"
 
         android:layout_width="0dp"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/balanceid" />
+
+    <TextView
+        android:id="@+id/usernameid"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="80dp"
+        android:gravity="center_horizontal|top"
+        android:text="Name"
+        android:fontFamily="@font/roboto_thin"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/balanceid" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

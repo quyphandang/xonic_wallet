@@ -24,7 +24,8 @@
             android:layout_marginBottom="8dp"
             android:background="#FFFFFF"
             android:text="Back"
-            android:textColor="#2D0775" />
+            android:fontFamily="@font/roboto_regular"
+            android:textColor="@color/colorBackground" />
 
     </LinearLayout>
 
@@ -51,7 +52,7 @@
         android:layout_weight="1"
         android:gravity="center"
         android:text="Back"
-        android:textColor="#2D0775"
+        android:textColor="@color/colorText"
         android:fontFamily="@font/roboto_regular"
         android:textIsSelectable="false"
         android:textSize="30sp" />
@@ -74,8 +75,9 @@
             android:layout_weight="1"
             android:drawableTop="@drawable/desposit_24dp"
             android:text="Desposit"
+            android:fontFamily="@font/roboto_regular"
             android:background="#FFFFFF"
-            android:textColor="#2D0775" />
+            android:textColor="@color/colorText" />
 
         <Button
             android:id="@+id/withdrawid"
@@ -87,8 +89,9 @@
             android:layout_weight="1"
             android:drawableTop="@drawable/withdraw_24dp"
             android:text="Withdraw"
+            android:fontFamily="@font/roboto_regular"
             android:background="#FFFFFF"
-            android:textColor="#2D0775" />
+            android:textColor="@color/colorText" />
 
     </LinearLayout>
 

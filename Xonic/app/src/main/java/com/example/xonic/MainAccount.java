@@ -13,11 +13,13 @@ import androidx.navigation.ui.NavigationUI;
 
 //import android.app.Fragment;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.protobuf.ByteString;
@@ -28,14 +30,18 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 
 import io.contentos.android.sdk.Wallet;
-
+    class Global{
+        public static String userName = "";
+        public static String privateKey = "";
+    }
 public class MainAccount extends AppCompatActivity {
-
-    public static String userName = "quyphancos" ;
-    public static String privateKey = "3uXkdUTCdMNFEDoGcqrVeuSbGCv4ZcUndTYMjFnU7SjaDN597q";
+    //public static String userName = "quyphancos" ;
+    //public static String privateKey = "3uXkdUTCdMNFEDoGcqrVeuSbGCv4ZcUndTYMjFnU7SjaDN597q";
     public static Wallet wallet = new Wallet("34.195.63.116", 8888, "test");
+    SharedPreferences sharedPreferences;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+    //public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_account);
 
@@ -47,20 +53,31 @@ public class MainAccount extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(bottomNav, navController);
 
-        //bottomNav.setOnNavigationItemSelectedListener(navListener);
-//        Wallet wallet = new Wallet("34.195.63.116", 8888, "test");
-        Intent intent = getIntent();
-        String userName = intent.getStringExtra(ImportInfo.USERNAME);
-        String privateKey = intent.getStringExtra(ImportInfo.PRIVATEKEY);
-//        long balance = wallet.getAccountByName(userName).getInfo().getCoin().getValue();
-//        double balance2 = (double) balance/1000000;
-//
-//        Bundle bundle = new Bundle();
-//        bundle.putString("Balance", String.valueOf(balance2));
-//        bundle.putString("Username", userName);
-//        bundle.putString("Privatekey", privateKey);
-//        Navigation.findNavController(this, R.id.fragment_container).navigate(R.id.nav_wallet, bundle);
+//        Intent intent = getIntent();
+//        Global.userName = intent.getStringExtra(ImportInfo.USERNAME);
+//        Global.privateKey = intent.getStringExtra(ImportInfo.PRIVATEKEY);
+        sharedPreferences = getSharedPreferences("saveAccount", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String checkaccount = sharedPreferences.getString("username","");
+        int lendcheckaccount = checkaccount.length();
+        if (lendcheckaccount == 0) {
+            //Toast.makeText( this , "chưa lưu tài khoản!",   Toast.LENGTH_SHORT).show();
+            Intent intent = getIntent();
+            Global.userName = intent.getStringExtra(ImportInfo.USERNAME);
+            Global.privateKey = intent.getStringExtra(ImportInfo.PRIVATEKEY);
+
+            editor.putString("username", Global.userName);
+            editor.putString("privatekey", Global.privateKey);
+
+            editor.commit();
+        } else{
+            //Toast.makeText( this , "Đã lưu tai khoan!",   Toast.LENGTH_SHORT).show();
+            Global.userName = sharedPreferences.getString("username","");
+            Global.privateKey = sharedPreferences.getString("privatekey","");
+            editor.putBoolean("checked", true);
+            editor.commit();
+        }
+
 
     }
-
 }

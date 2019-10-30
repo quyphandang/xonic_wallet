@@ -17,20 +17,25 @@
         android:background="#001A1818"
         android:text="back"
         android:fontFamily="@font/roboto_regular"
-        android:textColor="#2D0775"
+        android:textColor="@color/colorBackground"
         app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="0dp"/>
 
     <EditText
         android:id="@+id/username"
         style="@android:style/Widget.EditText"
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="40dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:background="@drawable/border_10"
         android:drawableLeft="@drawable/icons_user"
         android:ems="10"
         android:hint="User Name"
+        android:padding="5dp"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
@@ -39,10 +44,15 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="36dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="8dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:text="(Between 6 and 16 characters,only lower letters and numbers are allowed.)"
+        android:textColor="@color/colorBackground"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/usernameid" />
@@ -61,22 +71,25 @@
         android:includeFontPadding="false"
         android:shadowColor="#00CF1C1C"
         android:text="NEXT"
-        android:textColor="#2D0775"
+        android:textColor="@color/colorText"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        android:visibility="invisible"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/usernameid"
-        android:layout_width="320dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:fontFamily="@font/roboto_regular"
         android:text="User Name:"
-        android:textColor="#2D0775"
+        android:textColor="@color/colorBackground"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,7 +104,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_violet" />
+        app:srcCompat="@drawable/icon_green1" />
 
     <TextView
         android:id="@+id/imageid"
@@ -100,7 +113,7 @@
         android:layout_marginTop="24dp"
         android:fontFamily="@font/droid"
         android:textSize="18sp"
-        android:textColor="#2D0775"
+        android:textColor="@color/colorText"
         android:text="XONIC WALLET"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

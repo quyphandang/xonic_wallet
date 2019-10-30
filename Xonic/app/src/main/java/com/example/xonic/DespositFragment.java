@@ -27,14 +27,16 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 import io.contentos.android.sdk.encoding.WIF;
 
 import static android.content.Context.CLIPBOARD_SERVICE;
-import static com.example.xonic.MainAccount.privateKey;
-import static com.example.xonic.MainAccount.userName;
+//import static com.example.xonic.MainAccount.privateKey;
+//import static com.example.xonic.MainAccount.userName;
+import static com.example.xonic.Global.privateKey;
+import static com.example.xonic.Global.userName;
 import static com.example.xonic.MainAccount.wallet;
 
 public class DespositFragment extends Fragment {
-    Button backid,copyid;
+    Button backid;
     TextView publicid;
-    ImageView imageqr;
+    ImageView imageqr, copyid;
     Bitmap bitmap;
     ClipboardManager clipboardManager;
     @Nullable
@@ -42,7 +44,7 @@ public class DespositFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_desposit, container, false);
         backid = (Button) view.findViewById(R.id.backid);
-        copyid = (Button) view.findViewById(R.id.copyid);
+        copyid = (ImageView) view.findViewById(R.id.copyid);
         publicid = (TextView) view.findViewById(R.id.publicid);
         imageqr = (ImageView) view.findViewById(R.id.imageqr);
         String Name = userName;

@@ -49,13 +49,12 @@ public class DespositFragment extends Fragment {
         imageqr = (ImageView) view.findViewById(R.id.imageqr);
         String Name = userName;
         String Key = privateKey;
-        //String publicKey = WIF.fromPublicKey(wallet.getAccountByName(userName).getInfo().getPublicKey());
         publicid.setText(Name);
         String publickey  = publicid.getText().toString().trim();
         //create QR code
         try {
             MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-            BitMatrix bitMatrix = multiFormatWriter.encode(Name, BarcodeFormat.QR_CODE, 200, 200);
+            BitMatrix bitMatrix = multiFormatWriter.encode(Name, BarcodeFormat.QR_CODE, 250, 250);
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
             imageqr.setImageBitmap(bitmap);
@@ -67,9 +66,7 @@ public class DespositFragment extends Fragment {
             public void onClick(View v) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                //DespositW walletFragment = new WalletFragment();
                 fragmentTransaction.replace(R.id.fragment_container, new DespositWithdrawFragment());
-//                //fragmentTransaction.addToBackStack("Desposit and Withdraw");
                 fragmentTransaction.commit();
             }
         });
@@ -79,14 +76,11 @@ public class DespositFragment extends Fragment {
         copyid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //String public1 =  publicid.getText().toString();
                 ClipData clipData = ClipData.newPlainText("PRIVATE", userName);
                 clipboardManager.setPrimaryClip(clipData);
                 Toast.makeText( getActivity(), "Copy Succes",   Toast.LENGTH_SHORT).show();
             }
         });
-        // Bitmap bm = encodeAsBitmap(barcode_content, BarcodeFormat.QR_CODE, 150, 150);
-        //bitmap = TextToImageEncode(etqr.getText().toString());
         return view;
     }
 }

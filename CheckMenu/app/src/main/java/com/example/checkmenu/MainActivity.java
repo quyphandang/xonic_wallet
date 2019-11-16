@@ -1,6 +1,7 @@
 package com.example.checkmenu;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
@@ -29,10 +30,17 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNav, navController);
 
 
-        //FragmentManager fragmentMananger = getSupportFragmentManager();
-        //FragmentTransaction fragmentTransaction = fragmentMananger.beginTransaction();
-        //fragmentTransaction.replace(R.id.fragment_container, new One_Fragment());
-        //fragmentTransaction.commit();
+        Bundle bundle = new Bundle();
+        bundle.putString("So1", "Cộng Hoà Xã Hội Chủ Nghĩa Việt Nam!");
+        bundle.putString("So2", "Thông tin thông báo số 2");
+
+        Four_Fragment four_fragment = new Four_Fragment();
+        //five_fragment.getArguments(bundle);
+        four_fragment.setArguments(bundle);
+        FragmentManager fragmentMananger = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentMananger.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_container, new Four_Fragment());
+        fragmentTransaction.commit();
 
     }
 }

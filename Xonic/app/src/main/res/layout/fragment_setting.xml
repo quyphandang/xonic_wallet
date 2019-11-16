@@ -1,56 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
+    android:orientation="vertical"
+    android:weightSum="10"
     tools:context=".MainAccount">
 
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:padding="10dp"
-        android:text="ACCOUNT"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:fontFamily="@font/roboto_regular"
+        android:gravity="bottom"
+        android:paddingLeft="20dp"
+        android:text="Account"
+        android:textColor="@color/colorBackground"
         android:textSize="22dp"
-        android:textColor="@color/colorText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
+        android:layout_weight="3.5"
         android:id="@android:id/list"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
-
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:padding="10dp">
     </ListView>
 
-    <Button
-        android:id="@+id/logoutid"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="450dp"
-        android:background="@drawable/boder_30"
-        android:text="Log Out"
-        android:textColor="#FFFFFF"
-        android:textSize="14dp"
+    <TextView
+        android:id="@+id/copyid"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.7"
+        android:drawableTop="@drawable/copy__24dp"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="center_horizontal|top"
+        android:text="Copy PrivateKey"
+        android:textColor="@color/colorText"
+        android:textSize="14sp" />
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
         android:fontFamily="@font/roboto_regular"
+        android:gravity="bottom"
+        android:paddingLeft="20dp"
+        android:text="Community"
+        android:textColor="@color/colorBackground"
+        android:textSize="22dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.045"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/communityid"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.7"
+        android:drawableLeft="@drawable/icons_telegram_30"
+        android:drawablePadding="10dp"
+        android:fontFamily="@font/roboto_light"
+        android:gravity="left|center_vertical"
+        android:text="Telegram"
+        android:layout_marginLeft="20dp"
+        android:textColor="@color/colorText"
+        android:textSize="20sp" />
+
+    <Switch
+        android:layout_weight="1.5"
+        android:id="@+id/switch1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:text="Password"
+        android:drawableLeft="@drawable/ic_lock_24dp"
+        android:textSize="20sp"
+        android:textColor="@color/colorBackground"
+        android:fontFamily="@font/roboto_regular"
+        android:drawablePadding="5dp"
+        android:trackTint="@color/colorText"
+        android:thumbTint="@color/colorText"
+        android:padding="20dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:paddingTop="10dp">
+
+
+        <Button
+            android:id="@+id/logoutid"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:background="@drawable/boder_30"
+            android:fontFamily="@font/roboto_regular"
+            android:text="Log Out"
+            android:textColor="#FFFFFF"
+            android:textSize="14dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+</LinearLayout>

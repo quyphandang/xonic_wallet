@@ -28,6 +28,9 @@ import io.contentos.android.sdk.Wallet;
 
 //import static com.example.xonic.MainAccount.privateKey;
 //import static com.example.xonic.MainAccount.userName;
+//import static com.example.xonic.Global.balance2;
+import static com.example.xonic.Balancecos.balance2;
+import static com.example.xonic.Global.balance2stake;
 import static com.example.xonic.Global.privateKey;
 import static com.example.xonic.Global.userName;
 import static com.example.xonic.MainAccount.wallet;
@@ -58,12 +61,11 @@ public class StakeFragment extends ListFragment {
         Button stakeid = (Button) view.findViewById(R.id.stakeid);
         final EditText amount1 = (EditText) view.findViewById(R.id.amount1);
         final TextView amount2 = (TextView) view.findViewById(R.id.amount2);
-        long balance = wallet.getAccountByName(userName).getInfo().getCoin().getValue();
-        double balance2 = (double) balance/1000000;
-
-        //long balancevest = wallet.getAccountByName(userName).getInfo().getVest().getValue();
-        long balancestake = wallet.getAccountByName(userName).getInfo().getStakeVestFromMe().getValue();
-        double balance2stake  = (double) balancestake/1000000;
+//        long balance = wallet.getAccountByName(userName).getInfo().getCoin().getValue();
+//        double balance2 = (double) balance/1000000;
+//
+//        long balancestake = wallet.getAccountByName(userName).getInfo().getStakeVestFromMe().getValue();
+//        double balance2stake  = (double) balancestake/1000000;
         arrayListCoin = new ArrayList<>();
         arrayListCoin.add(new ExchangeInfo( "Balance Cos: " + String.valueOf(balance2), R.drawable.icon_cos2, "COS"));
         arrayListCoin.add(new ExchangeInfo( "Balance Chicken: " + String.valueOf(balance2stake), R.drawable.icon_stake, "Chicken"));
@@ -165,11 +167,11 @@ public class StakeFragment extends ListFragment {
 
         return view;
     }
-    private void dialog_convert(String amountshow){
+    private void dialog_convert(final String amountshow){
         //Toast.makeText(getActivity(), "Đúng rồi!", Toast.LENGTH_SHORT).show();
         // String amountshow = amountcos;
         //String amountshow = amount1.getText().toString();
-        double amountdouble = Double.parseDouble(amountshow) * 1000000;
+        final double amountdouble = Double.parseDouble(amountshow) * 1000000;
         final long amountlong = (long) amountdouble ;
         //final long amountlong = amountlong1*100000;
 
@@ -182,6 +184,9 @@ public class StakeFragment extends ListFragment {
                // wallet.account(userName).transferToVest(userName,userName, amountlong,"test");
                 wallet.account(userName).stake(userName,userName,amountlong);
                 //wallet.account(userName).
+                //balance2 = balance2 - amountdouble/1000000;
+                balance2stake = balance2stake + amountdouble/1000000;
+               // Toast.makeText( getActivity(), String.valueOf(balance2),   Toast.LENGTH_SHORT).show();
             }
         });
         alertDialog.setNegativeButton ("No", new DialogInterface.OnClickListener() {
@@ -192,7 +197,7 @@ public class StakeFragment extends ListFragment {
         alertDialog.show();
     }
     private void dialog_convert_stake(String amountstakeshow){
-        double amountdoublestake = Double.parseDouble(amountstakeshow)*1000000;
+        final double amountdoublestake = Double.parseDouble(amountstakeshow)*1000000;
         final long amountlongstake = (long) amountdoublestake;
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
         //double amountshow = (double) amountvestshow/10 ;
@@ -204,6 +209,8 @@ public class StakeFragment extends ListFragment {
                 //wallet.account(userName).convertVest(userName ,amountlongvest);
                 wallet.account(userName).unStake(userName,userName,amountlongstake);
                 //wallet.account(userName).transferToVest(userName,userName, amountlongvest,"test");
+//                balance2 = balance2 + amountdoublestake/1000000;
+//                balance2stake =balance2stake - amountdoublestake/1000000;
             }
         });
         alertDialog.setNegativeButton ("No", new DialogInterface.OnClickListener() {

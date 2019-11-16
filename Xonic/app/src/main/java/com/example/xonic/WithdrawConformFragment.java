@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 //import static com.example.xonic.MainAccount.privateKey;
 //import static com.example.xonic.MainAccount.userName;
+//import static com.example.xonic.Global.balance2;
 import static com.example.xonic.Global.privateKey;
 import static com.example.xonic.Global.userName;
 import static com.example.xonic.MainAccount.wallet;
@@ -85,13 +86,6 @@ public class WithdrawConformFragment extends ListFragment {
                 String MEMO = Memo;
                 wallet.openKeyStore(getKeyStoreFile(), keyStorePassword);
                 wallet.addKey(userName,privateKey);
-                //convert cos to vet
-               // wallet.account("quyphancos").transferToVest("quyphancos","quyphancos",1000000,"test");
- //               try {
- //                wallet.account("quyphancos").convertVest("quyphancos",AMOUNTTRANSFER);
-//                } catch (Exception e) {
-//                    Toast.makeText( getActivity(), String.valueOf(AMOUNTTRANSFER),   Toast.LENGTH_SHORT).show();
-//                }
 
                 wallet.account(userName).transfer(
                         userName,
@@ -99,6 +93,7 @@ public class WithdrawConformFragment extends ListFragment {
                         AMOUNTTRANSFER,
                         MEMO
                 );
+                //balance2 = balance2 - Double.parseDouble(AMOUNT);
                 Toast.makeText(getActivity(), "Transfer Success!", Toast.LENGTH_SHORT).show();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

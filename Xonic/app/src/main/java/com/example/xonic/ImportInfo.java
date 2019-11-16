@@ -1,10 +1,12 @@
 package com.example.xonic;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -21,6 +23,8 @@ import io.contentos.android.sdk.crypto.Key;
 import io.contentos.android.sdk.encoding.WIF;
 import io.contentos.android.sdk.prototype.Type;
 import io.contentos.android.sdk.rpc.Grpc;
+
+import static com.example.xonic.MainAccount.wallet;
 
 public class ImportInfo extends AppCompatActivity {
     Button back, nextinfo;
@@ -40,7 +44,10 @@ public class ImportInfo extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         setContentView(R.layout.activity_import_info);
 
         back = (Button) findViewById(R.id.back) ;
@@ -56,9 +63,7 @@ public class ImportInfo extends AppCompatActivity {
         nextinfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = getIntent();
-                //String userName = intent.getStringExtra(InfoAccount.USER);
-                Wallet wallet = new Wallet("34.195.63.116", 8888, "test");
+                //Wallet wallet = new Wallet("34.195.63.116", 8888, "test");
                 String privateKey = editText.getText().toString();
                 Intent intent = getIntent();
                 String userName = intent.getStringExtra(InfoAccount.USERNAME);
@@ -81,37 +86,14 @@ public class ImportInfo extends AppCompatActivity {
                 }catch (Exception e){
                     Toast.makeText(ImportInfo.this, "Private Key is incorrect" , Toast.LENGTH_SHORT).show();
                 }
-
-                /*
-                long balance = wallet.getAccountByName("quyphankute").getInfo().getCoin().getValue();
-                double balance2 = (double) balance/1000000;
-
-                double balance1 = (double) balance; //0.212221
-                double a = 0.000001;
-                double balance3 = balance1 - a*1000000;
-                double balance4 = balance3/1000000;
-
-                showbalanceid.setText(String.valueOf(balance2));
-                wallet.addKey("quyphancos","3uXkdUTCdMNFEDoGcqrVeuSbGCv4ZcUndTYMjFnU7SjaDN597q");
-                wallet.account("quyphancos").transfer(
-                        "quyphancos",          // token sender
-                        "quyphankute",        // token receiver
-                        5,                  // token amount
-                        "transfer test"     // memo
-                );
-                showbalanceid2.setText(String.valueOf(balance2));
-                */
             }
         });
-        //setByUser();
-
     }
     public void byExtras(String userName, String privateKey){
-        //Intent intent = new Intent(AddUseName.this, InfoAccount.class);
         Intent intent = new Intent(getApplicationContext(), MainAccount.class);
-        //Intent intent = new Intent(getApplicationContext(), WalletFragment.class);
         intent.putExtra(USERNAME,userName);
         intent.putExtra(PRIVATEKEY,privateKey);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 }

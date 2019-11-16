@@ -1,5 +1,6 @@
 package com.example.xonic;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -28,6 +30,8 @@ import io.contentos.android.sdk.encoding.WIF;
 import io.contentos.android.sdk.prototype.Type;
 import io.contentos.android.sdk.rpc.Grpc;
 import io.contentos.android.sdk.rpc.RpcClient;
+
+import static com.example.xonic.MainAccount.wallet;
 
 class valuei {
     public static int i = 0;
@@ -53,7 +57,11 @@ public class AddUseName extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         setContentView(R.layout.activity_add_use_name);
         //back
         back = (Button) findViewById(R.id.back) ;
@@ -104,18 +112,18 @@ public class AddUseName extends AppCompatActivity {
                     //Toast toast = Toast.makeText(AddUseName.this, "Incorrectly. Please again!", Toast.LENGTH_SHORT);
                     //toast.setGravity();
                 }else{
-
-                Wallet wallet = new Wallet("34.195.63.116", 8888, "test");
+                   // Wallet wallet = Network.Main.wallet();
+                //Wallet wallet = new Wallet("34.195.63.116", 8888, "test");
                 String userName = username.getText().toString();
                 String privateKey = WIF.fromPrivateKey(Key.generate());
                 String publicKey = WIF.fromPublicKey(Key.publicKeyOf(WIF.toPrivateKey(privateKey)));
                 wallet.openKeyStore(getKeyStoreFile(), keyStorePassword);
-                wallet.addKey("quyphancos", "3uXkdUTCdMNFEDoGcqrVeuSbGCv4ZcUndTYMjFnU7SjaDN597q");
+                wallet.addKey("xonicwallet", "4JpfK2Pwqd877d4LzYF5LRhLx9X8ywbxR7fpvwLFtDnjWRk1V3");
                 //wallet.addKey("quyphancos", "3uXkdUTCdMNFEDoGcqrVeuSbGCv4ZcUndTYMjFnU7SjaD59ef"); //failse private
                 //wallet.addKey("quyphancos","4ZSzaybvskVimm1WoHmipE4XFpMYz4pHSHhxGt6w5mLKC7xyS1"); //acc mainnet
                 long accountCreationFee = wallet.getChainState().getState().getDgpo().getAccountCreateFee().getValue();
-                Grpc.BroadcastTrxResponse resp = wallet.account("quyphancos").accountCreate(
-                        "quyphancos",
+                Grpc.BroadcastTrxResponse resp = wallet.account("xonicwallet").accountCreate(
+                        "xonicwallet",
                         userName,
                         accountCreationFee,
                         Key.publicKeyOf(WIF.toPrivateKey(privateKey)),

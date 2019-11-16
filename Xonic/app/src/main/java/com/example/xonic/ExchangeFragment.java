@@ -26,6 +26,9 @@ import java.util.ArrayList;
 
 //import static com.example.xonic.MainAccount.privateKey;
 //import static com.example.xonic.MainAccount.userName;
+//import static com.example.xonic.Global.balance2;
+import static com.example.xonic.Balancecos.balance2;
+import static com.example.xonic.Global.balance2vest;
 import static com.example.xonic.Global.privateKey;
 import static com.example.xonic.Global.userName;
 import static com.example.xonic.MainAccount.wallet;
@@ -52,22 +55,23 @@ public class ExchangeFragment extends ListFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exchange, container, false);
+//        long millis1 = System.currentTimeMillis();
         ImageView imageswap = (ImageView) view.findViewById(R.id.imageswap);
         Button exchangeid = (Button) view.findViewById(R.id.exchangeid);
         final EditText amount1 = (EditText) view.findViewById(R.id.amount1);
         final TextView amount2 = (TextView) view.findViewById(R.id.amount2);
-        long balance = wallet.getAccountByName(userName).getInfo().getCoin().getValue();
-        double balance2 = (double) balance/1000000;
-
-        long balancevest = wallet.getAccountByName(userName).getInfo().getVest().getValue();
-        double balance2vest = (double) balancevest/1000000;
+//        long balance = wallet.getAccountByName(userName).getInfo().getCoin().getValue();
+//        double balance2 = (double) balance/1000000;
+//
+//        long balancevest = wallet.getAccountByName(userName).getInfo().getVest().getValue();
+//        double balance2vest = (double) balancevest/1000000;
         arrayListCoin = new ArrayList<>();
         arrayListCoin.add(new ExchangeInfo( "Balance Cos: " + String.valueOf(balance2), R.drawable.icon_cos2, "COS"));
         arrayListCoin.add(new ExchangeInfo( "Balance Vest: " + String.valueOf(balance2vest), R.drawable.icon_vest, "VEST"));
         //adapter = new ListCoinAdapter(getActivity(),android.R.layout.simple_list_item_1, arrayListCoin);
         adapter = new ExchangeInfoAdapter(getActivity(), R.layout.exchange_view, arrayListCoin);
         setListAdapter(adapter);
-        //
+
         amount1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -85,6 +89,9 @@ public class ExchangeFragment extends ListFragment {
 
             }
         });
+//        long millis2 = System.currentTimeMillis();
+//        long distance = millis2 - millis1;
+//        Toast.makeText(getActivity(), "Time " + String.valueOf(distance)  , Toast.LENGTH_SHORT).show();
         //image swap
         imageswap.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,8 +107,6 @@ public class ExchangeFragment extends ListFragment {
                 adapter.notifyDataSetChanged();
             }
         });
-
-
         wallet.openKeyStore(getKeyStoreFile(), keyStorePassword);
         wallet.addKey(userName,privateKey);
         exchangeid.setOnClickListener(new View.OnClickListener() {
@@ -110,9 +115,7 @@ public class ExchangeFragment extends ListFragment {
                 String icon0 = arrayListCoin.get(0).getIcon();
                 if (icon0 == "COS"){
                     String amountcos = amount1.getText().toString();
-
                     int lenghtAmount = amountcos.length();
-                    //Toast.makeText(getActivity(), "Giá trị long: " + amountcos , Toast.LENGTH_SHORT).show();
                     if (lenghtAmount != 0){
                         double amountcheck = Double.parseDouble(amountcos) * 1000000;
                         long amountlong = (long) amountcheck ;
@@ -125,7 +128,7 @@ public class ExchangeFragment extends ListFragment {
                                 Toast.makeText(getActivity(), "Current balance is not sufficient!", Toast.LENGTH_SHORT).show();
                             }else{
                                     dialog_convert(amountcos);
-                                //Toast.makeText(getActivity(), "Đúng rồi!", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(getActivity(), "Success!", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }else{
@@ -141,11 +144,10 @@ public class ExchangeFragment extends ListFragment {
                                 Toast.makeText(getActivity(), "The transaction amount is lower than the minimum. Please enter again!", Toast.LENGTH_SHORT).show();
                             }else{
                                 long balancevest = wallet.getAccountByName(userName).getInfo().getVest().getValue();
-                                //long balancevestcheck = balancevest - amountvestlong*100000;
                                 long balancevestcheck = balancevest/100000 - amountvestlong;
                                 if (balancevestcheck > 0){
                                     dialog_convert_vest(amountvestlong);
-                                    //Toast.makeText( getActivity(), String.valueOf(amountvestlong),   Toast.LENGTH_SHORT).show();
+                                    //Toast.makeText(getActivity(), "Success!", Toast.LENGTH_SHORT).show();
                                 }else{
                                     Toast.makeText(getActivity(), "Current balance is not sufficient!", Toast.LENGTH_SHORT).show();
 
@@ -154,20 +156,14 @@ public class ExchangeFragment extends ListFragment {
                         }else{
                             Toast.makeText( getActivity(), "Please enter amount Vest!",   Toast.LENGTH_SHORT).show();
                         }
-                    //Toast.makeText( getActivity(), "VEST to COS",   Toast.LENGTH_SHORT).show();
                 }
             }
         });
         return view;
     }
     private void dialog_convert(String amountshow){
-        //Toast.makeText(getActivity(), "Đúng rồi!", Toast.LENGTH_SHORT).show();
-       // String amountshow = amountcos;
-        //String amountshow = amount1.getText().toString();
-        double amountdouble = Double.parseDouble(amountshow) * 1000000;
+        final double amountdouble = Double.parseDouble(amountshow) * 1000000;
         final long amountlong = (long) amountdouble ;
-        //final long amountlong = amountlong1*100000;
-
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
         alertDialog.setTitle("Notice!");
         alertDialog.setMessage("Are you sure you will convert " + amountshow + " COS to VEST?");
@@ -175,6 +171,9 @@ public class ExchangeFragment extends ListFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 wallet.account(userName).transferToVest(userName,userName, amountlong,"test");
+              //  balance2 = balance2 - amountdouble/1000000;
+                balance2vest = balance2vest + amountdouble/1000000;
+              //  Toast.makeText( getActivity(), String.valueOf(balance2),   Toast.LENGTH_SHORT).show();
             }
         });
         alertDialog.setNegativeButton ("No", new DialogInterface.OnClickListener() {
@@ -185,7 +184,6 @@ public class ExchangeFragment extends ListFragment {
         alertDialog.show();
     }
     private void dialog_convert_vest(long amountvestshow){
-        //double amountdoublevest = Double.parseDouble(amountvestshow)*1000000;
         final long amountlongvest = (long) amountvestshow*100000;
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
         double amountshow = (double) amountvestshow/10 ;
@@ -195,7 +193,6 @@ public class ExchangeFragment extends ListFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 wallet.account(userName).convertVest(userName ,amountlongvest);
-                //wallet.account(userName).transferToVest(userName,userName, amountlongvest,"test");
             }
         });
         alertDialog.setNegativeButton ("No", new DialogInterface.OnClickListener() {

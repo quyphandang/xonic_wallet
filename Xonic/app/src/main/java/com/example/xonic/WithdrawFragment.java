@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -33,7 +34,6 @@ import static com.example.xonic.MainAccount.wallet;
 public class WithdrawFragment extends Fragment {
     EditText userreceive, amount, memoid;
     Button backid, allbalance, nextid;
-    ImageView imageqr;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -44,11 +44,14 @@ public class WithdrawFragment extends Fragment {
         backid = (Button) view.findViewById(R.id.backid);
         allbalance = (Button) view.findViewById(R.id.allbalance);
         nextid = (Button) view.findViewById(R.id.nextid);
-        imageqr = (ImageView) view.findViewById(R.id.imageqr);
+
 
         backid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                userreceive.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                amount.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                memoid.onEditorAction(EditorInfo.IME_ACTION_DONE);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 //DespositW walletFragment = new WalletFragment();
@@ -60,14 +63,6 @@ public class WithdrawFragment extends Fragment {
 
         //ImageView check QR
         final IntentIntegrator intenIntegrator = new IntentIntegrator(getActivity());
-        imageqr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                intenIntegrator.initiateScan();
-                //Toast.makeText(getActivity(), "Đúng ", Toast.LENGTH_SHORT).show();
-            }
-        });
-
 
         //Button All Balance
         allbalance.setOnClickListener(new View.OnClickListener() {
@@ -105,6 +100,9 @@ public class WithdrawFragment extends Fragment {
                             if (balanceCheck < 0) {
                                 Toast.makeText(getActivity(), "Current balance is not sufficient!", Toast.LENGTH_SHORT).show();
                             } else {
+                                userreceive.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                                amount.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                                memoid.onEditorAction(EditorInfo.IME_ACTION_DONE);
                                 Bundle Withdraw_Conform = new Bundle();
                                 Withdraw_Conform.putString("UserReceive", userReceive);
                                 Withdraw_Conform.putString("Amount", Amount);

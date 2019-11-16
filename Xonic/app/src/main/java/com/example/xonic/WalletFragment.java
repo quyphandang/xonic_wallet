@@ -22,6 +22,9 @@ import java.util.ArrayList;
 
 import io.contentos.android.sdk.Wallet;
 
+//import static com.example.xonic.Global.balance2;
+import static com.example.xonic.Global.balance2stake;
+import static com.example.xonic.Global.balance2vest;
 import static com.example.xonic.Global.privateKey;
 import static com.example.xonic.Global.userName;
 //import static com.example.xonic.MainAccount.privateKey;
@@ -30,6 +33,9 @@ import static com.example.xonic.MainAccount.wallet;
 import com.example.xonic.MainAccount;
 
 //public class WalletFragment extends Fragment {
+    class Balancecos {
+    public static double balance2 = 0;
+}
 public class WalletFragment extends ListFragment {
     TextView balanceid, usernameid;
     ArrayList<ListCoin> arrayListCoin;
@@ -41,40 +47,25 @@ public class WalletFragment extends ListFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_wallet, container, false);
-
         balanceid = (TextView) view.findViewById(R.id.balanceid);
         String Name = userName;
-        //String
-        //String Name1 = user;
-        //MainAccount
         String Key = privateKey;
-        Wallet wallet = new Wallet("34.195.63.116", 8888, "test");
         long balance = wallet.getAccountByName(userName).getInfo().getCoin().getValue();
-        double balance2 = (double) balance/1000000;
-
-        long balancevest = wallet.getAccountByName(userName).getInfo().getVest().getValue();
-        double balance2vest = (double) balancevest/1000000;
-
-        long balancestake = wallet.getAccountByName(userName).getInfo().getStakeVestFromMe().getValue();
-        double balance2stake = (double) balancestake/1000000;
-//        String balance2 = getArguments().getString("Balance");
-//        String UserName = getArguments().getString("Username");
-//        String PrivateKey = getArguments().getString("Privatekey");
-        //String b = userName;
-        balanceid.setText(String.valueOf(balance2) + " COS");
-
+        Balancecos.balance2 = (double) balance/1000000;
+        balanceid.setText(String.valueOf(Balancecos.balance2) + " COS");
+//        balanceid.setText(balance2 + " COS");
         usernameid = (TextView) view.findViewById(R.id.usernameid);
         usernameid.setText(userName);
-        //xml listview: @+id/listcoinviewid
-        //listcoinviewid = (ListView) view.findViewById(R.id.listcoinviewid);
             arrayListCoin = new ArrayList<>();
-            arrayListCoin.add(new ListCoin("Contentos", String.valueOf(balance2), R.drawable.icon_cos2));
-            arrayListCoin.add(new ListCoin("Vest", String.valueOf(balance2vest), R.drawable.icon_vest));
-            arrayListCoin.add(new ListCoin("Chicken", String.valueOf(balance2stake), R.drawable.icon_stake));
-            //adapter = new ListCoinAdapter(getActivity(),android.R.layout.simple_list_item_1, arrayListCoin);
+            arrayListCoin.add(new ListCoin("Contentos", String.valueOf(Balancecos.balance2) + " COS", R.drawable.icon_cos2));
+            arrayListCoin.add(new ListCoin("Vest", String.valueOf(balance2vest) + " VEST" , R.drawable.icon_vest));
+            arrayListCoin.add(new ListCoin("Chicken", String.valueOf(balance2stake) + " STAKE", R.drawable.icon_stake));
             adapter = new ListCoinAdapter(getActivity(), R.layout.list_coin_view, arrayListCoin);
             setListAdapter(adapter);
 
+//        long millis2 = System.currentTimeMillis();
+//        long distance = millis2 - millis1;
+//        Toast.makeText(getActivity(), "Time " + String.valueOf(distance)  , Toast.LENGTH_SHORT).show();
         return view ;
     }
 

@@ -1,12 +1,10 @@
 package com.example.xonic;
 
 import android.content.Context;
-import android.graphics.drawable.Icon;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -52,7 +50,7 @@ public class SettingInfoAdapter extends BaseAdapter {
         convertView = inflater1.inflate(layout, null);
         //TextView Name = (TextView) convertView.findViewById(R.id.nameid);
         TextView Name = (TextView) convertView.findViewById(R.id.nameid);
-        TextView Infoacc = (TextView) convertView.findViewById(R.id.infoid);
+        TextView Infoacc = (TextView) convertView.findViewById(R.id.dayid);
         //String aaa = Amount.getText().toString();
         SettingInfo settinginfo = listSettinginfo.get(position);
         Name.setText(settinginfo.getBalance());

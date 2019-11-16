@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:orientation="vertical"
+    android:weightSum="20"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,88 +10,90 @@
     android:background="#FFFFFF"
     tools:context=".ImportPrivateMnemonic">
 
-    <Button
-        android:id="@+id/back"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:background="#001A1818"
-        android:fontFamily="@font/roboto_regular"
-        android:text="back"
-        android:textColor="@color/colorBackground"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="0dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3">
 
-    <TextView
-        android:id="@+id/text2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/droid"
-        android:text="XONIX WALLET"
-        android:textColor="@color/colorText"
-        android:textIsSelectable="false"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/xonic"
-        app:layout_constraintVertical_bias="0.0" />
+        <Button
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_white"
+            android:fontFamily="@font/roboto_regular"
+            android:text="back"
+            android:gravity="top|left"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:textColor="@color/colorBackground"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:layout_editor_absoluteY="0dp" />
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/xonic"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="120dp"
-        android:src="@drawable/icon_green"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_weight="3"
+        android:layout_gravity="bottom"
+        android:paddingBottom="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:srcCompat="@drawable/icon_green1" />
 
-    <Button
-        android:id="@+id/importprivateid"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="180dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginRight="70dp"
-        android:background="@drawable/boder_30"
-        android:fontFamily="@font/roboto_regular"
-        android:includeFontPadding="false"
-        android:shadowColor="#00CF1C1C"
-        android:text="IMPORT PRIVATE"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text2" />
+    <TextView
+        android:id="@+id/text2"
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fontFamily="@font/droid"
+        android:textSize="18sp"
+        android:textColor="@color/colorText"
+        android:text="XONIC WALLET"
+        android:gravity="top|center_horizontal"
+        />
 
-    <Button
-        android:id="@+id/mnemonic"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
-        android:layout_marginLeft="70dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginRight="70dp"
-        android:background="@drawable/boder_30"
-        android:fontFamily="@font/roboto_regular"
-        android:shadowColor="#00CF1C1C"
-        android:text="IMPORT MNEMONIC"
-        android:textColor="#FFFFFF"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/importprivateid" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:gravity="bottom|center_horizontal"
+        android:paddingBottom="10dp">
+
+        <Button
+            android:id="@+id/importprivateid"
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:background="@drawable/boder_30"
+            android:fontFamily="@font/roboto_regular"
+            android:includeFontPadding="false"
+            android:shadowColor="#00CF1C1C"
+            android:text="IMPORT PRIVATE"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="6"
+        android:gravity="top|center_horizontal"
+        android:paddingTop="10dp">
+
+        <Button
+            android:id="@+id/mnemonic"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:background="@drawable/boder_30"
+            android:fontFamily="@font/roboto_regular"
+            android:shadowColor="#00CF1C1C"
+            android:text="IMPORT MNEMONIC"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+
+</LinearLayout>

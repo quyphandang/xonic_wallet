@@ -4,11 +4,13 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,23 +41,31 @@ public class DespositFragment extends Fragment {
     ImageView imageqr, copyid;
     Bitmap bitmap;
     ClipboardManager clipboardManager;
+    LinearLayout maindes;
+    private long mLastClickTime = 0;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_desposit, container, false);
+        maindes = (LinearLayout) view.findViewById(R.id.maindes);
+        maindes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         backid = (Button) view.findViewById(R.id.backid);
         copyid = (ImageView) view.findViewById(R.id.copyid);
         publicid = (TextView) view.findViewById(R.id.publicid);
         imageqr = (ImageView) view.findViewById(R.id.imageqr);
         String Name = userName;
         String Key = privateKey;
-        //String publicKey = WIF.fromPublicKey(wallet.getAccountByName(userName).getInfo().getPublicKey());
         publicid.setText(Name);
         String publickey  = publicid.getText().toString().trim();
         //create QR code
         try {
             MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
-            BitMatrix bitMatrix = multiFormatWriter.encode(Name, BarcodeFormat.QR_CODE, 200, 200);
+            BitMatrix bitMatrix = multiFormatWriter.encode(Name, BarcodeFormat.QR_CODE, 250, 250);
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
             imageqr.setImageBitmap(bitmap);
@@ -67,9 +77,8 @@ public class DespositFragment extends Fragment {
             public void onClick(View v) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                //DespositW walletFragment = new WalletFragment();
-                fragmentTransaction.replace(R.id.fragment_container, new DespositWithdrawFragment());
-//                //fragmentTransaction.addToBackStack("Desposit and Withdraw");
+                //fragmentTransaction.replace(R.id.fragment_container, new DespositWithdrawFragment());
+                fragmentTransaction.add(R.id.fragment_container, new DespositWithdrawFragment(), "DWF");
                 fragmentTransaction.commit();
             }
         });
@@ -79,14 +88,15 @@ public class DespositFragment extends Fragment {
         copyid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //String public1 =  publicid.getText().toString();
                 ClipData clipData = ClipData.newPlainText("PRIVATE", userName);
                 clipboardManager.setPrimaryClip(clipData);
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
                 Toast.makeText( getActivity(), "Copy Succes",   Toast.LENGTH_SHORT).show();
             }
         });
-        // Bitmap bm = encodeAsBitmap(barcode_content, BarcodeFormat.QR_CODE, 150, 150);
-        //bitmap = TextToImageEncode(etqr.getText().toString());
         return view;
     }
 }

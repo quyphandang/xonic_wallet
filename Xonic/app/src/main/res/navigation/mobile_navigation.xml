@@ -10,9 +10,6 @@
         android:name="com.example.xonic.WalletFragment"
         android:label="Wallet"
         tools:layout="@layout/fragment_wallet" >
-        <action
-            android:id="@+id/action_nav_wallet_to_despositWithdrawFragment"
-            app:destination="@id/despositWithdrawFragment" />
     </fragment>
 
     <fragment
@@ -28,40 +25,17 @@
         tools:layout="@layout/fragment_stake" />
 
     <fragment
+        android:id="@+id/nav_bpvote"
+        android:name="com.example.xonic.BpvoteFragment"
+        android:label="Bpvote"
+        tools:layout="@layout/fragment_bpvote" />
+
+    <fragment
         android:id="@+id/nav_setting"
         android:name="com.example.xonic.SettingFragment"
         android:label="Setting"
         tools:layout="@layout/fragment_setting" />
-    <fragment
-        android:id="@+id/despositWithdrawFragment"
-        android:name="com.example.xonic.DespositWithdrawFragment"
-        android:label="fragment_desposit_withdraw"
-        tools:layout="@layout/fragment_desposit_withdraw" >
-        <action
-            android:id="@+id/action_despositWithdrawFragment_to_despositFragment"
-            app:destination="@id/despositFragment" />
-        <action
-            android:id="@+id/action_despositWithdrawFragment_to_withdrawFragment"
-            app:destination="@id/withdrawFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/despositFragment"
-        android:name="com.example.xonic.DespositFragment"
-        android:label="fragment_desposit"
-        tools:layout="@layout/fragment_desposit" />
-    <fragment
-        android:id="@+id/withdrawFragment"
-        android:name="com.example.xonic.WithdrawFragment"
-        android:label="fragment_withdraw"
-        tools:layout="@layout/fragment_withdraw" >
-        <action
-            android:id="@+id/action_withdrawFragment_to_withdrawConformFragment"
-            app:destination="@id/withdrawConformFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/withdrawConformFragment"
-        android:name="com.example.xonic.WithdrawConformFragment"
-        android:label="fragment_withdraw_conform"
-        tools:layout="@layout/fragment_withdraw_conform" />
+
+
 
 </navigation>

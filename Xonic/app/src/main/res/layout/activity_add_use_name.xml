@@ -1,105 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:weightSum="20"
     android:background="#FFFFFF"
     tools:context=".AddUseName">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2">
 
-    <Button
-        android:id="@+id/back"
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:background="#001A1818"
-        android:text="back"
-        android:fontFamily="@font/roboto_regular"
-        android:textColor="@color/colorBackground"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="0dp"/>
+            <Button
+                android:id="@+id/back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/border_white"
+                android:fontFamily="@font/roboto_regular"
+                android:text="back"
+                android:gravity="top|left"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:textColor="@color/colorBackground"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:layout_editor_absoluteY="0dp" />
 
-    <EditText
-        android:id="@+id/username"
-        style="@android:style/Widget.EditText"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:background="@drawable/border_10"
-        android:drawableLeft="@drawable/icons_user"
-        android:ems="10"
-        android:hint="User Name"
-        android:padding="5dp"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        </LinearLayout>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="0dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:text="(Between 6 and 16 characters,only lower letters and numbers are allowed.)"
-        android:textColor="@color/colorBackground"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/usernameid" />
-
-    <Button
-        android:id="@+id/infoacc"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:layout_marginLeft="64dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginRight="64dp"
-        android:layout_marginBottom="96dp"
-        android:background="@drawable/bordered"
-        android:fontFamily="@font/roboto_regular"
-        android:includeFontPadding="false"
-        android:shadowColor="#00CF1C1C"
-        android:text="NEXT"
-        android:textColor="@color/colorText"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/usernameid"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:fontFamily="@font/roboto_regular"
-        android:text="User Name:"
-        android:textColor="@color/colorBackground"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageid" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:paddingBottom="15dp"
+        android:layout_weight="3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
@@ -107,10 +46,11 @@
         app:srcCompat="@drawable/icon_green1" />
 
     <TextView
+        android:layout_weight="2"
         android:id="@+id/imageid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_width="match_parent"
+        android:gravity="top|center_horizontal"
+        android:layout_height="0dp"
         android:fontFamily="@font/droid"
         android:textSize="18sp"
         android:textColor="@color/colorText"
@@ -119,4 +59,71 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_weight="1"
+        android:id="@+id/usernameid"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:fontFamily="@font/roboto_regular"
+        android:text="User Name:"
+        android:textColor="@color/colorBackground"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_weight="1.5"
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:text="(Between 6 and 16 characters, only lower letters and numbers are allowed.)"
+        android:textColor="@color/colorBackground"
+        android:fontFamily="@font/roboto_regular"
+        android:textSize="14dp"/>
+
+    <EditText
+        android:id="@+id/username"
+        style="@android:style/Widget.EditText"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_weight="1"
+        android:background="@drawable/border_10"
+        android:drawableLeft="@drawable/icons_user"
+        android:ems="10"
+        android:hint="User Name"
+        android:inputType="textPersonName"
+        android:padding="5dp"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9.5"
+        android:gravity="center">
+
+        <Button
+
+            android:id="@+id/infoacc"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:background="@drawable/bordered"
+            android:fontFamily="@font/roboto_regular"
+            android:includeFontPadding="false"
+            android:shadowColor="#00CF1C1C"
+            android:text="NEXT"
+            android:textColor="@color/colorText"
+            android:textSize="20sp"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>

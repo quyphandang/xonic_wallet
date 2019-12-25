@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 
 //import static com.example.xonic.MainAccount.privateKey;
 //import static com.example.xonic.MainAccount.userName;
+//import static com.example.xonic.Global.balance2;
 import static com.example.xonic.Global.privateKey;
 import static com.example.xonic.Global.userName;
 import static com.example.xonic.MainAccount.wallet;
@@ -31,6 +33,7 @@ public class WithdrawConformFragment extends ListFragment {
     Button conformid, backid;
     ArrayList<Withdraw_Info> arrayListCoin;
     WithdrawInfoAdapter adapter;
+    LinearLayout mainwithcon;
     private static final String keyStorePassword = "my password";
     private static File getKeyStoreFile() {
         File file = null;
@@ -48,6 +51,13 @@ public class WithdrawConformFragment extends ListFragment {
 //        userreceive = (TextView) view.findViewById(R.id.userreceive);
 //        amount = (TextView) view.findViewById(R.id.amount);
 //        memoid = (TextView) view.findViewById(R.id.memoid);
+        mainwithcon = (LinearLayout) view.findViewById(R.id.mainwithcon);
+        mainwithcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         conformid = (Button) view.findViewById(R.id.conformid);
         backid = (Button) view.findViewById(R.id.backid);
         final String Userreceive = getArguments().getString("UserReceive");
@@ -70,7 +80,8 @@ public class WithdrawConformFragment extends ListFragment {
             public void onClick(View v) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, new WithdrawFragment());
+                //fragmentTransaction.replace(R.id.fragment_container, new WithdrawFragment());
+                fragmentTransaction.add(R.id.fragment_container, new WithdrawFragment(), "WITH");
                 fragmentTransaction.commit();
             }
         });
@@ -85,13 +96,6 @@ public class WithdrawConformFragment extends ListFragment {
                 String MEMO = Memo;
                 wallet.openKeyStore(getKeyStoreFile(), keyStorePassword);
                 wallet.addKey(userName,privateKey);
-                //convert cos to vet
-               // wallet.account("quyphancos").transferToVest("quyphancos","quyphancos",1000000,"test");
- //               try {
- //                wallet.account("quyphancos").convertVest("quyphancos",AMOUNTTRANSFER);
-//                } catch (Exception e) {
-//                    Toast.makeText( getActivity(), String.valueOf(AMOUNTTRANSFER),   Toast.LENGTH_SHORT).show();
-//                }
 
                 wallet.account(userName).transfer(
                         userName,
@@ -99,6 +103,7 @@ public class WithdrawConformFragment extends ListFragment {
                         AMOUNTTRANSFER,
                         MEMO
                 );
+                //balance2 = balance2 - Double.parseDouble(AMOUNT);
                 Toast.makeText(getActivity(), "Transfer Success!", Toast.LENGTH_SHORT).show();
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

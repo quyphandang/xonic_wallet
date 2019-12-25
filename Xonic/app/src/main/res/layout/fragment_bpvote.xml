@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".MainAccount"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+     <LinearLayout
+         android:orientation="horizontal"
+         android:layout_weight="2"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:padding="10dp"
+         android:background="@color/colorText">
+
+          <TextView
+              android:id="@+id/name"
+              android:layout_width="0dp"
+              android:layout_height="31dp"
+              android:layout_weight="3"
+              android:fontFamily="@font/roboto_regular"
+              android:textColor="#FFFFFF"
+              android:text="Name"
+              android:textStyle="bold"
+              android:textSize="16sp" />
+
+          <TextView
+              android:layout_weight="1.4"
+              android:id="@+id/votes"
+              android:textSize="16sp"
+              android:text="Voters"
+              android:fontFamily="@font/roboto_regular"
+              android:textColor="#FFFFFF"
+              android:layout_width="0dp"
+              android:textStyle="bold"
+              android:layout_height="match_parent"
+              android:layout_toRightOf="@+id/name"
+              android:layout_marginLeft="4dp"/>
+
+          <TextView
+              android:layout_weight="3.6"
+              android:id="@+id/vestvote"
+              android:textSize="16sp"
+              android:text="VEST Votes"
+              android:fontFamily="@font/roboto_regular"
+              android:textColor="#FFFFFF"
+              android:layout_width="0dp"
+              android:gravity="center"
+              android:textStyle="bold"
+              android:layout_height="match_parent"
+              android:layout_toRightOf="@+id/votes"
+              android:layout_marginLeft="10dp"/>
+
+
+          <TextView
+              android:layout_weight="2"
+              android:id="@+id/vestvote1"
+              android:textSize="16sp"
+              android:text="Vote"
+              android:fontFamily="@font/roboto_regular"
+              android:textColor="#FFFFFF"
+              android:layout_width="0dp"
+              android:textStyle="bold"
+              android:gravity="center"
+              android:layout_height="match_parent"
+              android:layout_toRightOf="@+id/votes"
+              android:layout_marginLeft="10dp"
+              android:paddingLeft="10dp"/>
+
+     </LinearLayout>
+
+     <ListView
+         android:layout_weight="8"
+         android:id="@+id/listviewbpvote"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"/>
+
+
+
+</LinearLayout>

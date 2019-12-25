@@ -1,13 +1,18 @@
 package com.example.xonic;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,41 +38,48 @@ import static com.example.xonic.MainAccount.wallet;
 public class WithdrawFragment extends Fragment {
     EditText userreceive, amount, memoid;
     Button backid, allbalance, nextid;
-    ImageView imageqr;
+    LinearLayout mainwith;
+    private long mLastClickTime = 0;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_withdraw, container, false);
+        mainwith = (LinearLayout) view.findViewById(R.id.mainwith);
+        mainwith.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         userreceive = (EditText) view.findViewById(R.id.userreceive);
         amount = (EditText) view.findViewById(R.id.amount);
         memoid = (EditText) view.findViewById(R.id.memoid);
         backid = (Button) view.findViewById(R.id.backid);
         allbalance = (Button) view.findViewById(R.id.allbalance);
         nextid = (Button) view.findViewById(R.id.nextid);
-        imageqr = (ImageView) view.findViewById(R.id.imageqr);
+
 
         backid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                userreceive.onEditorAction(EditorInfo.IME_ACTION_DONE);
+//                amount.onEditorAction(EditorInfo.IME_ACTION_DONE);
+//                memoid.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                InputMethodManager input = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                input.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 //DespositW walletFragment = new WalletFragment();
-                fragmentTransaction.replace(R.id.fragment_container, new DespositWithdrawFragment());
+                //fragmentTransaction.replace(R.id.fragment_container, new DespositWithdrawFragment());
                 //fragmentTransaction.addToBackStack("Desposit and Withdraw");
+                fragmentTransaction.add(R.id.fragment_container, new DespositWithdrawFragment(), "DWF");
                 fragmentTransaction.commit();
             }
         });
 
         //ImageView check QR
         final IntentIntegrator intenIntegrator = new IntentIntegrator(getActivity());
-        imageqr.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                intenIntegrator.initiateScan();
-                //Toast.makeText(getActivity(), "Đúng ", Toast.LENGTH_SHORT).show();
-            }
-        });
-
 
         //Button All Balance
         allbalance.setOnClickListener(new View.OnClickListener() {
@@ -98,13 +110,26 @@ public class WithdrawFragment extends Fragment {
                         double amountCheck = Double.parseDouble(Amount) * 1000000;
 
                         if (amountCheck < 1) {
+                            if (SystemClock.elapsedRealtime() - mLastClickTime < 500) {
+                                return;
+                            }
+                            mLastClickTime = SystemClock.elapsedRealtime();
                             Toast.makeText(getActivity(), "The transaction amount is lower than the minimum. Please enter again!", Toast.LENGTH_SHORT).show();
                         } else {
                             double balance2 = (double) balance;
                             double balanceCheck = balance2 - amountCheck;
                             if (balanceCheck < 0) {
+                                if (SystemClock.elapsedRealtime() - mLastClickTime < 500) {
+                                    return;
+                                }
+                                mLastClickTime = SystemClock.elapsedRealtime();
                                 Toast.makeText(getActivity(), "Current balance is not sufficient!", Toast.LENGTH_SHORT).show();
                             } else {
+//                                userreceive.onEditorAction(EditorInfo.IME_ACTION_DONE);
+//                                amount.onEditorAction(EditorInfo.IME_ACTION_DONE);
+//                                memoid.onEditorAction(EditorInfo.IME_ACTION_DONE);
+                                InputMethodManager input = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                                input.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
                                 Bundle Withdraw_Conform = new Bundle();
                                 Withdraw_Conform.putString("UserReceive", userReceive);
                                 Withdraw_Conform.putString("Amount", Amount);
@@ -113,20 +138,33 @@ public class WithdrawFragment extends Fragment {
                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                 WithdrawConformFragment withdrawConformFragment = new WithdrawConformFragment();
                                 withdrawConformFragment.setArguments(Withdraw_Conform);
-                                fragmentTransaction.replace(R.id.fragment_container, withdrawConformFragment);
+                                //fragmentTransaction.replace(R.id.fragment_container, withdrawConformFragment);
+                                fragmentTransaction.add(R.id.fragment_container, withdrawConformFragment, "WDCF");
                                 fragmentTransaction.commit();
                                 //Toast.makeText(getActivity(), String.valueOf(amountCheck), Toast.LENGTH_SHORT).show();
                             }
                         }
                       }else {
+                            if (SystemClock.elapsedRealtime() - mLastClickTime < 500) {
+                                return;
+                            }
+                            mLastClickTime = SystemClock.elapsedRealtime();
                             Toast.makeText(getActivity(), "Please enter Amount!", Toast.LENGTH_SHORT).show();
                         }
                         //if ()
                         //double checkBalence = balance - Amount*
                     }catch(Exception e){
+                        if (SystemClock.elapsedRealtime() - mLastClickTime < 500) {
+                            return;
+                        }
+                        mLastClickTime = SystemClock.elapsedRealtime();
                         Toast.makeText( getActivity(), "Account does not exist!",   Toast.LENGTH_SHORT).show();
                     }
                 }else {
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 500) {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
                     Toast.makeText( getActivity(), "Please enter UserName!",   Toast.LENGTH_SHORT).show();
                 }
             }

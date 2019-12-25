@@ -3,7 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="5dp">
+    android:background="#FFFFFF"
+    android:paddingTop="7dp"
+    android:paddingBottom="7dp"
+    >
 
 
     <TextView
@@ -11,8 +14,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="20dp"
-        android:paddingLeft="20dp"
+        android:layout_marginTop="22dp"
+        android:padding="5dp"
         android:text="Balance1"
         android:textColor="@color/colorBackground"
         android:textSize="14sp" />
@@ -24,9 +27,9 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_marginTop="12dp"
         android:layout_marginEnd="36dp"
         android:layout_marginRight="36dp"
-        android:layout_marginTop="10dp"
         android:gravity="center_horizontal|center_vertical"
         android:text="ICON"
         android:textColor="@color/colorText"
@@ -36,8 +39,8 @@
         android:id="@+id/imageicon"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:layout_marginRight="18dp"
-        android:layout_marginTop="7dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginRight="10dp"
         android:layout_toLeftOf="@+id/icon"
         app:srcCompat="@drawable/iconcos" />
 

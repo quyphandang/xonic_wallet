@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    android:background="#FFFFFF">
+
+
+    <TextView
+        android:id="@+id/dayid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/nameid"
+        android:fontFamily="@font/roboto_regular"
+        android:padding="5dp"
+        android:text="DAY"
+        android:textColor="@color/colorBackground"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="left"
+        android:id="@+id/imageicon"
+        android:layout_below="@+id/dayid"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/imageicon"
+        android:fontFamily="@font/roboto_regular"
+        android:text="Status"
+        android:textColor="@color/colorBackground"
+        android:textSize="16sp"
+        android:layout_below="@+id/dayid"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:id="@+id/transtion"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_below="@+id/status"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="60dp"
+        android:layout_toRightOf="@+id/imageicon"
+        android:fontFamily="@font/roboto_regular"
+        android:text="4Rj9he3DUq1nD5gNT7DEA15erMX6i5teEANqVRbUzVC8trPFFL"
+        android:textColor="@color/colorBackground"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dayid"
+
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:text="Amount" />
+
+</RelativeLayout>

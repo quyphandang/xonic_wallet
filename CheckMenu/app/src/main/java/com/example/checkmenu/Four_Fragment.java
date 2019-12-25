@@ -25,6 +25,14 @@ public class Four_Fragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_4, container, false);
         editText4 = (EditText) view.findViewById(R.id.editText);
         textView4 = (TextView) view.findViewById(R.id.textView4);
+
+        Bundle truyen = this.getArguments();
+        if (truyen != null ){
+            textView4.setText("đúng rồi");
+        }else{
+            textView4.setText("trật rồi");
+        }
+
         button4 = (Button) view.findViewById(R.id.button4);
         button4.setOnClickListener(new OnClickListener() {
             @Override

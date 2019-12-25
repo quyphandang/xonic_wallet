@@ -1,12 +1,15 @@
 package com.example.xonic;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +17,7 @@ import android.widget.Toast;
 import static com.example.xonic.AddUseName.USERNAME;
 
 public class InfoAccount extends AppCompatActivity {
+    private long mLastClickTime = 0;
     Button back,nextid;
     TextView usernameid, privatekeyid, copyid ;
     ClipboardManager clipboardManager;
@@ -22,7 +26,10 @@ public class InfoAccount extends AppCompatActivity {
     //public static final String BUNDLE = "BUNDLE";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         setContentView(R.layout.activity_info_account);
         copyid = (TextView) findViewById(R.id.copyid);
         nextid = (Button) findViewById(R.id.nextid);
@@ -51,6 +58,10 @@ public class InfoAccount extends AppCompatActivity {
            // Toast.makeText(getApplicationContext(), "Clipboard data has been cleared.", Toast.LENGTH_LONG).show();
            //Toast toast=Toast.makeText(InfoAccount.this, "Copy Succes",   Toast.LENGTH_SHORT).show();
            clipboardManager.setPrimaryClip(clipData);
+                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                    return;
+                }
+                mLastClickTime = SystemClock.elapsedRealtime();
            Toast.makeText(InfoAccount.this, "Copy Succes",   Toast.LENGTH_SHORT).show();
             }
         });

@@ -1,10 +1,13 @@
 package com.example.xonic;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -14,15 +17,21 @@ import io.contentos.android.sdk.Wallet;
 import io.contentos.android.sdk.crypto.Key;
 import io.contentos.android.sdk.encoding.WIF;
 
+import static com.example.xonic.MainAccount.wallet;
+
 public class ImportMnemonic extends AppCompatActivity {
     EditText mnemonic,accountname;
 
     Button nextinfo,back;
+    private long mLastClickTime = 0;
     public static final String USERNAME = "USERNAME";
     public static final String PRIVATEKEY = "PRIVATEKEY";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
         setContentView(R.layout.activity_import_mnemonic);
         back = (Button) findViewById(R.id.back) ;
         back.setOnClickListener(new View.OnClickListener(){
@@ -35,7 +44,7 @@ public class ImportMnemonic extends AppCompatActivity {
         nextinfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Wallet wallet = new Wallet("34.195.63.116", 8888, "test");
+                //Wallet wallet = new Wallet("34.195.63.116", 8888, "test");
                 mnemonic = (EditText) findViewById(R.id.mnemonic);
                 accountname = (EditText) findViewById(R.id.accountname);
                 String mnemoNic = mnemonic.getText().toString();
@@ -52,13 +61,25 @@ public class ImportMnemonic extends AppCompatActivity {
                             //Toast.makeText(getApplicationContext(), a , Toast.LENGTH_SHORT).show();
                             byExtras(userName,privateKey);
                         }else{
+                            if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                                return;
+                            }
+                            mLastClickTime = SystemClock.elapsedRealtime();
                             Toast.makeText(getApplicationContext(), "Account and Mnemonic did not match. Try Again!" , Toast.LENGTH_SHORT).show();
                         }
                     }catch (Exception e){
+                        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                            return;
+                        }
+                        mLastClickTime = SystemClock.elapsedRealtime();
                         Toast.makeText(getApplicationContext(), "User Name is incorrect" , Toast.LENGTH_SHORT).show();
                     }
 
                 }catch (Exception e){
+                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
+                        return;
+                    }
+                    mLastClickTime = SystemClock.elapsedRealtime();
                     Toast.makeText(getApplicationContext(), "Mnemonic is incorrect" , Toast.LENGTH_SHORT).show();
                 }
 

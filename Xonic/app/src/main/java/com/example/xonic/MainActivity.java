@@ -25,7 +25,11 @@ public class MainActivity extends AppCompatActivity {
 
     SharedPreferences sharedPreferences;
     ProgressBar splashProgress;
+<<<<<<< HEAD
     int SPLASH_TIME = 1000;
+=======
+    int SPLASH_TIME = 4000;
+>>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         //this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -34,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         //actionBar.hide();
         setContentView(R.layout.activity_main);
 
+<<<<<<< HEAD
 
         splashProgress = findViewById(R.id.splashProgress);
         playProgress();
@@ -41,6 +46,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
 
+=======
+        splashProgress = findViewById(R.id.splashProgress);
+        playProgress();
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+>>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
                 if (haveNetwork()){
                   //  Toast.makeText(MainActivity.this,"Network availabe",Toast.LENGTH_SHORT).show();
 //                }else if (!haveNetwork()){
@@ -65,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, PrivateAndSucure.class);
                             startActivity(intent);
                         } else {
+<<<<<<< HEAD
 //                            Intent intent1 = new Intent(MainActivity.this, MainAccount.class);
 //                                        startActivity(intent1);
 
@@ -78,6 +92,12 @@ public class MainActivity extends AppCompatActivity {
 //                                    long millis2 = System.currentTimeMillis();
 //                                    long distance = millis2 - millis1;
 //                                    Toast.makeText(MainActivity.this, "Time " + String.valueOf(distance)  , Toast.LENGTH_SHORT).show();
+=======
+                            try {
+                                String inpublicKey = WIF.fromPublicKey(Key.publicKeyOf(WIF.toPrivateKey(checkkey)));
+                                try {
+                                    String inpublicKeyAccount = WIF.fromPublicKey(wallet.getAccountByName(checkacc).getInfo().getPublicKey());
+>>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
                                     if (inpublicKey.equals(inpublicKeyAccount)) {
                                         Intent intent1 = new Intent(MainActivity.this, MainAccount.class);
                                         startActivity(intent1);
@@ -118,10 +138,18 @@ public class MainActivity extends AppCompatActivity {
             }
         }, SPLASH_TIME);
 
+<<<<<<< HEAD
     }
     private void playProgress() {
         ObjectAnimator.ofInt(splashProgress, "progress", 100)
                 .setDuration(3000)
+=======
+
+    }
+    private void playProgress() {
+        ObjectAnimator.ofInt(splashProgress, "progress", 100)
+                .setDuration(2000)
+>>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
                 .start();
     }
     private boolean haveNetwork(){

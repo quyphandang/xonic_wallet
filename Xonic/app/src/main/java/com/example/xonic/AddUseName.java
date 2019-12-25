@@ -132,6 +132,7 @@ public class AddUseName extends AppCompatActivity {
                     Toast.makeText(AddUseName.this, "Incorrectly. Please again!", Toast.LENGTH_SHORT).show();
 
                 }else{
+<<<<<<< HEAD
 
                     VerifyAccount("http://accountcreator.contentos.io/v1/create_account_confirm");
 //                String userName = username.getText().toString();
@@ -161,6 +162,33 @@ public class AddUseName extends AppCompatActivity {
 //                    Toast.makeText(AddUseName.this, "Account already exists!", Toast.LENGTH_SHORT).show();
 //                }
 
+=======
+                   // Wallet wallet = Network.Main.wallet();
+                //Wallet wallet = new Wallet("34.195.63.116", 8888, "test");
+                String userName = username.getText().toString();
+                String privateKey = WIF.fromPrivateKey(Key.generate());
+                String publicKey = WIF.fromPublicKey(Key.publicKeyOf(WIF.toPrivateKey(privateKey)));
+                wallet.openKeyStore(getKeyStoreFile(), keyStorePassword);
+                wallet.addKey("xonicwallet", "4JpfK2Pwqd877d4LzYF5LRhLx9X8ywbxR7fpvwLFtDnjWRk1V3");
+                //wallet.addKey("quyphancos", "3uXkdUTCdMNFEDoGcqrVeuSbGCv4ZcUndTYMjFnU7SjaD59ef"); //failse private
+                //wallet.addKey("quyphancos","4ZSzaybvskVimm1WoHmipE4XFpMYz4pHSHhxGt6w5mLKC7xyS1"); //acc mainnet
+                long accountCreationFee = wallet.getChainState().getState().getDgpo().getAccountCreateFee().getValue();
+                Grpc.BroadcastTrxResponse resp = wallet.account("xonicwallet").accountCreate(
+                        "xonicwallet",
+                        userName,
+                        accountCreationFee,
+                        Key.publicKeyOf(WIF.toPrivateKey(privateKey)),
+                        "");
+
+                if(resp.getInvoice().getStatus() == 200) {
+                    //Toasty.success(AddUseName.this, "Success!", Toast.LENGTH_SHORT, true).show();
+                    byExtras(userName, privateKey, publicKey);
+                    //byExtrasUser(userName,privateKey);
+                } else {
+                    //Toasty.warning(AddUseName.this, "Account already exists!", Toast.LENGTH_SHORT, true).show();
+                    Toast.makeText(AddUseName.this, "Account already exists!", Toast.LENGTH_SHORT).show();
+                }
+>>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
                 }
             }
         });

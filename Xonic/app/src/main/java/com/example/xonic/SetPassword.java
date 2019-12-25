@@ -7,7 +7,10 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.os.SystemClock;
+=======
+>>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -22,7 +25,11 @@ public class SetPassword extends AppCompatActivity {
     TextView number0, number1, number2, number3, number4, number5, number6, number7, number8, number9;
     ImageView removenumber, no1, no2, no3, no4, no5, no6;
     SharedPreferences sharedPreferences;
+<<<<<<< HEAD
     private long mLastClickTime = 0;
+=======
+
+>>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -157,11 +164,15 @@ public class SetPassword extends AppCompatActivity {
                     SavePass.pass = SavePass.pass.substring(0, SavePass.countPass);
                     check(SavePass.countPass);
                 } catch(Exception e) {
+<<<<<<< HEAD
                     if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
                         return;
                     }
                     mLastClickTime = SystemClock.elapsedRealtime();
                     Toast.makeText( SetPassword.this, "Set your passcode! " + SavePass.pass, Toast.LENGTH_SHORT).show();
+=======
+                    Toast.makeText( SetPassword.this, "Set Password! " + SavePass.pass, Toast.LENGTH_SHORT).show();
+>>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
                 }
                 //Toast.makeText( DatPass.this, "Số: " + String.valueOf(SavePass.countPass) + " Pass: " + SavePass.pass, Toast.LENGTH_SHORT).show();
             }

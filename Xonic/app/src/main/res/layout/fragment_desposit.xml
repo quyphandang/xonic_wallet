@@ -5,8 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
+<<<<<<< HEAD
     android:weightSum="10"
     android:id="@+id/maindes">
+=======
+    android:weightSum="10">
+>>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
 
     <LinearLayout
         android:layout_width="match_parent"

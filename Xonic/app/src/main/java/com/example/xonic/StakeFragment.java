@@ -241,6 +241,7 @@ public class StakeFragment extends ListFragment {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                // wallet.account(userName).transferToVest(userName,userName, amountlong,"test");
+<<<<<<< HEAD
                 try {
                     wallet.account(userName).stake(userName,userName,amountlong);
 
@@ -261,6 +262,12 @@ public class StakeFragment extends ListFragment {
                 }
 
 
+=======
+                wallet.account(userName).stake(userName,userName,amountlong);
+                //wallet.account(userName).
+                //balance2 = balance2 - amountdouble/1000000;
+                balance2stake = balance2stake + amountdouble/1000000;
+>>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
                // Toast.makeText( getActivity(), String.valueOf(balance2),   Toast.LENGTH_SHORT).show();
             }
         });
@@ -286,6 +293,7 @@ public class StakeFragment extends ListFragment {
                 //wallet.account(userName).transferToVest(userName,userName, amountlongvest,"test");
 //                balance2 = balance2 + amountdoublestake/1000000;
 //                balance2stake =balance2stake - amountdoublestake/1000000;
+<<<<<<< HEAD
                 try {
                     wallet.account(userName).unStake(userName,userName,amountlongstake);
                 }catch (Exception e){
@@ -295,6 +303,8 @@ public class StakeFragment extends ListFragment {
                     mLastClickTime = SystemClock.elapsedRealtime();
                     Toast.makeText(getActivity(), "System Update!", Toast.LENGTH_SHORT).show();
                 }
+=======
+>>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
             }
         });
         alertDialog.setNegativeButton ("No", new DialogInterface.OnClickListener() {

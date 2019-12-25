@@ -62,6 +62,7 @@ public class ExchangeFragment extends ListFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_exchange, container, false);
+<<<<<<< HEAD
 
        // long millis1 = System.currentTimeMillis();
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -89,6 +90,9 @@ public class ExchangeFragment extends ListFragment {
 
         }
 
+=======
+//        long millis1 = System.currentTimeMillis();
+>>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
         ImageView imageswap = (ImageView) view.findViewById(R.id.imageswap);
         Button exchangeid = (Button) view.findViewById(R.id.exchangeid);
         final EditText amount1 = (EditText) view.findViewById(R.id.amount1);
@@ -105,7 +109,10 @@ public class ExchangeFragment extends ListFragment {
         adapter = new ExchangeInfoAdapter(getActivity(), R.layout.exchange_view, arrayListCoin);
         setListAdapter(adapter);
 
+<<<<<<< HEAD
         amount1.setFilters(new InputFilter[]{new DecimalDigitsInputFilter(10, 6)});
+=======
+>>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
         amount1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -194,10 +201,16 @@ public class ExchangeFragment extends ListFragment {
                                 Toast.makeText(getActivity(), "The transaction amount is lower than the minimum. Please enter again!", Toast.LENGTH_SHORT).show();
                             }else{
                                 long balancevest = wallet.getAccountByName(userName).getInfo().getVest().getValue();
+<<<<<<< HEAD
                                 long amountvestlong = (long) amountcheckvest*1000000;
                                 long balancevestcheck = balancevest - amountvestlong;
                                 if (balancevestcheck > 0){
                                     dialog_convert_vest(amountcheckvest);
+=======
+                                long balancevestcheck = balancevest/100000 - amountvestlong;
+                                if (balancevestcheck > 0){
+                                    dialog_convert_vest(amountvestlong);
+>>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
                                     //Toast.makeText(getActivity(), "Success!", Toast.LENGTH_SHORT).show();
                                 }else{
                                     if (SystemClock.elapsedRealtime() - mLastClickTime < 500) {
@@ -229,6 +242,7 @@ public class ExchangeFragment extends ListFragment {
         alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+<<<<<<< HEAD
                 try {
                     wallet.account(userName).transferToVest(userName,userName, amountlong,"test");
                     //  balance2 = balance2 - amountdouble/1000000;
@@ -249,6 +263,11 @@ public class ExchangeFragment extends ListFragment {
                     Toast.makeText(getActivity(), "System Update!", Toast.LENGTH_SHORT).show();
                 }
 
+=======
+                wallet.account(userName).transferToVest(userName,userName, amountlong,"test");
+              //  balance2 = balance2 - amountdouble/1000000;
+                balance2vest = balance2vest + amountdouble/1000000;
+>>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
               //  Toast.makeText( getActivity(), String.valueOf(balance2),   Toast.LENGTH_SHORT).show();
             }
         });
@@ -259,10 +278,15 @@ public class ExchangeFragment extends ListFragment {
         });
         alertDialog.show();
     }
+<<<<<<< HEAD
     private void dialog_convert_vest(double amountvestshow){
         double amountvestshow1 = (double) amountvestshow*1000000;
         final long amountlongvest = (long) amountvestshow1;
         Toast.makeText(getActivity(),String.valueOf(amountlongvest),Toast.LENGTH_SHORT).show();
+=======
+    private void dialog_convert_vest(long amountvestshow){
+        final long amountlongvest = (long) amountvestshow*100000;
+>>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
         final AlertDialog.Builder alertDialog = new AlertDialog.Builder(getActivity());
         double amountshow = (double) amountvestshow ;
         alertDialog.setTitle("Notice!");
@@ -270,6 +294,7 @@ public class ExchangeFragment extends ListFragment {
         alertDialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+<<<<<<< HEAD
                try {
                    wallet.account(userName).convertVest(userName ,amountlongvest);
                }catch (Exception e){
@@ -280,6 +305,9 @@ public class ExchangeFragment extends ListFragment {
                    Toast.makeText(getActivity(), "System Update!", Toast.LENGTH_SHORT).show();
                }
 
+=======
+                wallet.account(userName).convertVest(userName ,amountlongvest);
+>>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
             }
         });
         alertDialog.setNegativeButton ("No", new DialogInterface.OnClickListener() {

@@ -47,7 +47,7 @@ public class WalletFragment extends ListFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_wallet, container, false);
-<<<<<<< HEAD
+
 
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         DespositFragment despositFragment = (DespositFragment) getActivity().getSupportFragmentManager().findFragmentByTag("DES");
@@ -77,13 +77,6 @@ public class WalletFragment extends ListFragment {
         balanceid = (TextView) view.findViewById(R.id.balanceid);
         String Name = userName;
         String Key = privateKey;
-
-
-=======
-        balanceid = (TextView) view.findViewById(R.id.balanceid);
-        String Name = userName;
-        String Key = privateKey;
->>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
         long balance = wallet.getAccountByName(userName).getInfo().getCoin().getValue();
         Balancecos.balance2 = (double) balance/1000000;
         balanceid.setText(String.valueOf(Balancecos.balance2) + " COS");

@@ -2,14 +2,18 @@ package com.example.xonic;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.os.ConfigurationCompat;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -19,16 +23,27 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.rilixtech.widget.countrycodepicker.Country;
+import com.rilixtech.widget.countrycodepicker.CountryCodePicker;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
+class valuecode {
+    public static String code = "";
+    public static String fullphone = "";
+    public static String verycode = "";
+}
 
 public class AddPhone extends AppCompatActivity {
-    Button button, back, button_text;
+    Button  back, button_text;
     EditText phoneid, codeid;
+    TextView button;
+    CountryCodePicker ccp;
+    Locale locale;
     public static final String PHONE = "PHONE";
     public static final String TOKEN = "TOKEN";
     private long mLastClickTime = 0;
@@ -47,32 +62,38 @@ public class AddPhone extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        button = (Button) findViewById(R.id.button);
+        button = (TextView) findViewById(R.id.button);
         button_text = (Button) findViewById(R.id.button_next);
+        locale = ConfigurationCompat.getLocales(Resources.getSystem().getConfiguration()).get(0);
+        ccp = (CountryCodePicker) findViewById(R.id.ccp);
+        ccp.setCountryForNameCode(locale.getCountry());
+        ccp.setDefaultCountryUsingNameCode(locale.getCountry());
+        valuecode.code = ccp.getDefaultCountryCode();
+        ccp.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
+            @Override
+            public void onCountrySelected(Country selectedCountry) {
+                //Toast.makeText(AddPhone.this, selectedCountry.getPhoneCode() , Toast.LENGTH_SHORT).show();
+                valuecode.code = selectedCountry.getPhoneCode();
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String PhoneNumber = phoneid.getText().toString().trim();
-                if(PhoneNumber.isEmpty()){
+//                if (valuecode.code.equals("")){
+//                    valuecode.code = ccp.getDefaultCountryCode();
+//                }
+                String phone = phoneid.getText().toString().trim();;
+                if (phone.equals("")){
                     if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
                         return;
                     }
                     mLastClickTime = SystemClock.elapsedRealtime();
-                    Toast.makeText(AddPhone.this, "Please enter your phone number", Toast.LENGTH_LONG).show();
+                    Toast.makeText(AddPhone.this, "Please enter mobile!" , Toast.LENGTH_SHORT).show();
                 }else{
-                    int Num0 = PhoneNumber.charAt(0);
-                    String Number0 = String.valueOf((char) Num0);
-                    //Toast.makeText(AddPhone.this, Number0, Toast.LENGTH_LONG).show();
-                    if(Number0.equals("+")){
-                        SendCode("http://accountcreator.contentos.io/v1/create_account_request");
-                    }else{
-                        if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
-                            return;
-                        }
-                        mLastClickTime = SystemClock.elapsedRealtime();
-                        Toast.makeText(AddPhone.this, "Incorrect syntax", Toast.LENGTH_LONG).show();
-                    }
+                    valuecode.fullphone = "+"+valuecode.code+phoneid.getText().toString().trim().replaceAll("\\s+","");
+                    //Toast.makeText(AddPhone.this, valuecode.fullphone, Toast.LENGTH_SHORT).show();
+                    SendCode("http://accountcreator.contentos.io/v1/create_account_request");
                 }
 
             }
@@ -98,6 +119,7 @@ public class AddPhone extends AppCompatActivity {
 
     }
     private void SendCode(String url){
+        //Toast.makeText(AddPhone.this,"Pass Sendcode ",Toast.LENGTH_SHORT).show();
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -105,36 +127,37 @@ public class AddPhone extends AppCompatActivity {
                     public void onResponse(String response) {
                         try {
                             JSONObject jsonobject = new JSONObject(response);
-                            // String a = jsonobject.get("success");
-                            String a  = jsonobject.getString("success");
-                           // Toast.makeText(AddPhone.this,response,Toast.LENGTH_LONG).show();
-                            if(a=="true"){
-                                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
-                                    return;
-                                }
-                                mLastClickTime = SystemClock.elapsedRealtime();
-                                Toast.makeText(AddPhone.this, "Please check the message!", Toast.LENGTH_LONG).show();
+                            String a  = jsonobject.getString("code");
+                            //Toast.makeText(AddPhone.this,a,Toast.LENGTH_SHORT).show();
+                            if(a.equals("200")){
+                                new CountDownTimer(60000, 1000) {
+                                    public void onTick(long millisUntilFinished) {
+                                        button.setText("" + millisUntilFinished / 1000);
+                                        button.setEnabled(false);
+                                    }
+                                    public void onFinish() {
+                                        button.setText("Send");
+                                        button.setEnabled(true);
+                                    }
+                                }.start();
+                                //Toast.makeText(AddPhone.this, "Please check the message!", Toast.LENGTH_LONG).show();
+                            }else if(a.equals("400")){
+                                Toast.makeText(AddPhone.this, "Please try again!",Toast.LENGTH_SHORT).show();
+                            }else if(a.equals("401")){
+                                Toast.makeText(AddPhone.this, "Request too frequent", Toast.LENGTH_SHORT).show();
+                            }else if(a.equals("402")){
+                                Toast.makeText(AddPhone.this, "Phone number has been registered", Toast.LENGTH_SHORT).show();
+                            }else if(a.equals("405")){
+                                Toast.makeText(AddPhone.this, "Ip has been restricted", Toast.LENGTH_SHORT).show();
+                            }else if(a.equals("406")){
+                                Toast.makeText(AddPhone.this, "Incorrect phone nunmber", Toast.LENGTH_SHORT).show();
                             }else{
-                                String b = jsonobject.getString("message");
-                                //Toast.makeText(AddPhone.this,b ,Toast.LENGTH_LONG).show();
-                                if(b.equals("mobile phone existed.")){
-                                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
-                                        return;
-                                    }
-                                    mLastClickTime = SystemClock.elapsedRealtime();
-                                    Toast.makeText(AddPhone.this, "Mobile Phone Existed", Toast.LENGTH_LONG).show();
-                                }else{
-                                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
-                                        return;
-                                    }
-                                    mLastClickTime = SystemClock.elapsedRealtime();
-                                    Toast.makeText(AddPhone.this, "Incorrect Phone Number. Please try again!", Toast.LENGTH_LONG).show();
-                                }
-
+                                Toast.makeText(AddPhone.this, "Please try again!", Toast.LENGTH_SHORT).show();
                             }
                             //Toast.makeText(AddPhone.this, a, Toast.LENGTH_LONG).show();
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Toast.makeText(AddPhone.this,"Error",Toast.LENGTH_SHORT).show();
                         }
                     }
                 },
@@ -145,7 +168,7 @@ public class AddPhone extends AppCompatActivity {
                             return;
                         }
                         mLastClickTime = SystemClock.elapsedRealtime();
-                        Toast.makeText(AddPhone.this, "The system is busy",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddPhone.this, "Please try again!",Toast.LENGTH_SHORT).show();
                     }
                 }
         ){
@@ -153,7 +176,7 @@ public class AddPhone extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
 
                 Map<String, String> params = new HashMap<>();
-                params.put("mobile", phoneid.getText().toString().trim());
+                params.put("mobile", valuecode.fullphone);
                 return params;
             }
         };
@@ -168,21 +191,29 @@ public class AddPhone extends AppCompatActivity {
                         try {
                             JSONObject jsonobject = new JSONObject(response);
                             // String a = jsonobject.get("success");
-                            String a  = jsonobject.getString("success");
-                            if(a=="true"){
-                                //Toast.makeText(AddPhone.this,response , Toast.LENGTH_LONG).show();
-                               // String b = jsonobject.getString("data");
-                                String b = jsonobject.getJSONObject("data").getString("token");
-                                //Toast.makeText(AddPhone.this,b, Toast.LENGTH_LONG).show();
-                                String phone = phoneid.getText().toString().trim();
-                                byExtras(phone,b);
+                            String a  = jsonobject.getString("code");
+                            if(a.equals("200")){
+//                                String b = jsonobject.getJSONObject("data").getString("token");
+//                                String phone = valuecode.fullphone;
+                                valuecode.verycode = jsonobject.getJSONObject("data").getString("token");
+                                byExtras();
                                 //Toast.makeText(AddPhone.this, "Verify successful!", Toast.LENGTH_LONG).show();
+                            }else if(a.equals("400")){
+                                Toast.makeText(AddPhone.this, "Please try again!",Toast.LENGTH_SHORT).show();
+                            }else if(a.equals("401")){
+                                Toast.makeText(AddPhone.this, "Request too frequent", Toast.LENGTH_SHORT).show();
+                            }else if(a.equals("402")){
+                                Toast.makeText(AddPhone.this, "Phone number has been registered", Toast.LENGTH_SHORT).show();
+                            }else if(a.equals("403")){
+                                Toast.makeText(AddPhone.this, "Verify code doesn't match", Toast.LENGTH_SHORT).show();
+                            }else if(a.equals("405")){
+                                Toast.makeText(AddPhone.this, "Ip has been restricted", Toast.LENGTH_SHORT).show();
+                            }else if(a.equals("406")){
+                                Toast.makeText(AddPhone.this, "Incorrect phone nunmber", Toast.LENGTH_SHORT).show();
+                            }else if(a.equals("407")){
+                                Toast.makeText(AddPhone.this, "Invalid verify code", Toast.LENGTH_SHORT).show();
                             }else{
-                                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
-                                    return;
-                                }
-                                mLastClickTime = SystemClock.elapsedRealtime();
-                                Toast.makeText(AddPhone.this, "Code Mismatch", Toast.LENGTH_LONG).show();
+                                Toast.makeText(AddPhone.this, "Please try again!", Toast.LENGTH_SHORT).show();
                             }
                             //Toast.makeText(AddPhone.this, a, Toast.LENGTH_LONG).show();
                         } catch (JSONException e) {
@@ -197,7 +228,7 @@ public class AddPhone extends AppCompatActivity {
                             return;
                         }
                         mLastClickTime = SystemClock.elapsedRealtime();
-                        Toast.makeText(AddPhone.this, "The system is busy",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddPhone.this, "Please try again!",Toast.LENGTH_SHORT).show();
                     }
                 }
         ){
@@ -205,7 +236,7 @@ public class AddPhone extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
 
                 Map<String, String> params = new HashMap<>();
-                params.put("mobile", phoneid.getText().toString().trim());
+                params.put("mobile", valuecode.fullphone);
                 params.put("code", codeid.getText().toString().trim());
                 return params;
             }
@@ -213,11 +244,11 @@ public class AddPhone extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
-    public void byExtras(String phone, String token){
+    public void byExtras(){
         //Intent intent = new Intent(AddUseName.this, InfoAccount.class);
         Intent intent = new Intent(getApplicationContext(), AddUseName.class);
-        intent.putExtra(PHONE,phone);
-        intent.putExtra(TOKEN,token);
+//        intent.putExtra(PHONE,phone);
+//        intent.putExtra(TOKEN,token);
         startActivity(intent);
     }
 }

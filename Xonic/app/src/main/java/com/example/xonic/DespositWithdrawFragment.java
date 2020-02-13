@@ -38,10 +38,7 @@ public class DespositWithdrawFragment extends ListFragment {
     TextView balance_desposit_withdraw;
     ArrayList<Transtion> arrayTranstion;
     TranstionAdapter adapter;
-<<<<<<< HEAD
     LinearLayout maindeswith;
-=======
->>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
     private String date;

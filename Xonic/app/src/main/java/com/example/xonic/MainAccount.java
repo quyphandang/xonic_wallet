@@ -36,10 +36,8 @@ import java.util.List;
 
 import io.contentos.android.sdk.Network;
 import io.contentos.android.sdk.Wallet;
-<<<<<<< HEAD
+
 import io.contentos.android.sdk.rpc.Grpc;
-=======
->>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
 
 import static com.example.xonic.Global.userName;
 
@@ -49,23 +47,18 @@ class Global{
       //  public static double balance2 = 0;
         public static double balance2vest = 0;
         public static double balance2stake = 0;
-<<<<<<< HEAD
+
         public static ArrayList<String> listBroducer;
     }
-public class MainAccount extends AppCompatActivity {
-    public static Wallet wallet = Network.Main.wallet();
-    SharedPreferences sharedPreferences,sharedPreferences1;
-    private long mLastClickTime = 0;
-    int ab =0;
-=======
-    }
+
 public class MainAccount extends AppCompatActivity {
 //    public static String userName = "quyphancos" ;
 //    public static String privateKey = "3uXkdUTCdMNFEDoGcqrVeuSbGCv4ZcUndTYMjFnU7SjaDN597q";
     //public static Wallet wallet = new Wallet("34.195.63.116", 8888, "test");
       public static Wallet wallet = Network.Main.wallet();
-    SharedPreferences sharedPreferences;
->>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
+    SharedPreferences sharedPreferences,sharedPreferences1;
+    private long mLastClickTime = 0;
+    int ab =0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -108,13 +101,6 @@ public class MainAccount extends AppCompatActivity {
         //transfer data
 //        long balance = wallet.getAccountByName(userName).getInfo().getCoin().getValue();
 //        Global.balance2 = (double) balance/1000000;
-
-        long balancevest = wallet.getAccountByName(userName).getInfo().getVest().getValue();
-        Global.balance2vest = (double) balancevest/1000000;
-
-        long balancestake = wallet.getAccountByName(userName).getInfo().getStakeVestFromMe().getValue();
-        Global.balance2stake = (double) balancestake/1000000;
-
 
         long balancevest = wallet.getAccountByName(userName).getInfo().getVest().getValue();
         Global.balance2vest = (double) balancevest/1000000;

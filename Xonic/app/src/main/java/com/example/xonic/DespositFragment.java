@@ -77,12 +77,12 @@ public class DespositFragment extends Fragment {
             public void onClick(View v) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-<<<<<<< HEAD
+
                 //fragmentTransaction.replace(R.id.fragment_container, new DespositWithdrawFragment());
                 fragmentTransaction.add(R.id.fragment_container, new DespositWithdrawFragment(), "DWF");
-=======
+
                 fragmentTransaction.replace(R.id.fragment_container, new DespositWithdrawFragment());
->>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
+
                 fragmentTransaction.commit();
             }
         });

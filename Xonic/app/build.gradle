@@ -10,13 +10,13 @@ android {
         minSdkVersion 15
         targetSdkVersion 28
         //  targetSdkVersion 28
-<<<<<<< HEAD
-        versionCode 8
-        versionName "1.8"
-=======
-        versionCode 4
-        versionName "1.4"
->>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
+       // <<<<<<< HEAD
+        versionCode 10
+        versionName "2.0"
+        //=======
+//        versionCode 9
+//        versionName "1.5"
+        //>>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
         //versionName "1.0.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -64,6 +64,7 @@ dependencies {
     // compile project(path: ':sdk')
     implementation project(path: ':sdk')
     //implementation 'org.junit.jupiter:junit-jupiter-api'
+    implementation 'com.github.joielechong:countrycodepicker:2.4.1'
 
     //implementation 'com.github.GrenderG:Toasty:1.4.2'
 }

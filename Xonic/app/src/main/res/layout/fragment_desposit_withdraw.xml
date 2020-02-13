@@ -12,10 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
-<<<<<<< HEAD
-
-
-=======
 
         <Button
             android:id="@+id/backid"
@@ -29,7 +25,6 @@
             android:paddingTop="10dp"
             android:textColor="@color/colorBackground"
             app:layout_constraintStart_toStartOf="parent" />
->>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
 
     </LinearLayout>
 
@@ -91,7 +86,7 @@
             android:layout_marginLeft="4dp"
             android:layout_marginBottom="8dp"
             android:layout_weight="1"
-            android:drawableTop="@drawable/withdraw_24dp"
+            android:drawableTop="@drawable/withdraw"
             android:text="Withdraw"
             android:fontFamily="@font/roboto_regular"
             android:background="@drawable/border_white"

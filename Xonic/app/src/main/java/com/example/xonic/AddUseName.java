@@ -51,6 +51,7 @@ class valuei {
     public static int i = 0;
     public static String prikeypre = "";
     public static String publicpre ="";
+    public static int iKey = 0;
 }
 public class AddUseName extends AppCompatActivity {
     Button back;
@@ -81,7 +82,7 @@ public class AddUseName extends AppCompatActivity {
         actionBar.hide();
         setContentView(R.layout.activity_add_use_name);
         //back
-        setDataByExtras();
+        //setDataByExtras();
         back = (Button) findViewById(R.id.back) ;
         back.setOnClickListener(new View.OnClickListener(){
                                            @Override
@@ -132,63 +133,13 @@ public class AddUseName extends AppCompatActivity {
                     Toast.makeText(AddUseName.this, "Incorrectly. Please again!", Toast.LENGTH_SHORT).show();
 
                 }else{
-<<<<<<< HEAD
 
+//                    Intent intent = getIntent();
+//                    String phone = intent.getStringExtra(AddPhone.PHONE);
+//                    String token = intent.getStringExtra(AddPhone.TOKEN);
+//                    Toast.makeText(AddUseName.this,"Phone " + phone + " Token: " + token,Toast.LENGTH_LONG).show();
                     VerifyAccount("http://accountcreator.contentos.io/v1/create_account_confirm");
-//                String userName = username.getText().toString();
-//                String privateKey = WIF.fromPrivateKey(Key.generate());
-//                String publicKey = WIF.fromPublicKey(Key.publicKeyOf(WIF.toPrivateKey(privateKey)));
 
-                //wallet.openKeyStore(getKeyStoreFile(), keyStorePassword);
-                //wallet.addKey("xonicwallet", "4JpfK2Pwqd877d4LzYF5LRhLx9X8ywbxR7fpvwLFtDnjWRk1V3");
-//                long accountCreationFee = wallet.getChainState().getState().getDgpo().getAccountCreateFee().getValue();
-//                Grpc.BroadcastTrxResponse resp = wallet.account("xonicwallet").accountCreate(
-//                        "xonicwallet",
-//                        userName,
-//                        accountCreationFee,
-//                        Key.publicKeyOf(WIF.toPrivateKey(privateKey)),
-//                        "");
-//
-//                if(resp.getInvoice().getStatus() == 200) {
-//                    //Toasty.success(AddUseName.this, "Success!", Toast.LENGTH_SHORT, true).show();
-//                    byExtras(userName, privateKey, publicKey);
-//                    //byExtrasUser(userName,privateKey);
-//                } else {
-//                    //Toasty.warning(AddUseName.this, "Account already exists!", Toast.LENGTH_SHORT, true).show();
-//                    if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
-//                        return;
-//                    }
-//                    mLastClickTime = SystemClock.elapsedRealtime();
-//                    Toast.makeText(AddUseName.this, "Account already exists!", Toast.LENGTH_SHORT).show();
-//                }
-
-=======
-                   // Wallet wallet = Network.Main.wallet();
-                //Wallet wallet = new Wallet("34.195.63.116", 8888, "test");
-                String userName = username.getText().toString();
-                String privateKey = WIF.fromPrivateKey(Key.generate());
-                String publicKey = WIF.fromPublicKey(Key.publicKeyOf(WIF.toPrivateKey(privateKey)));
-                wallet.openKeyStore(getKeyStoreFile(), keyStorePassword);
-                wallet.addKey("xonicwallet", "4JpfK2Pwqd877d4LzYF5LRhLx9X8ywbxR7fpvwLFtDnjWRk1V3");
-                //wallet.addKey("quyphancos", "3uXkdUTCdMNFEDoGcqrVeuSbGCv4ZcUndTYMjFnU7SjaD59ef"); //failse private
-                //wallet.addKey("quyphancos","4ZSzaybvskVimm1WoHmipE4XFpMYz4pHSHhxGt6w5mLKC7xyS1"); //acc mainnet
-                long accountCreationFee = wallet.getChainState().getState().getDgpo().getAccountCreateFee().getValue();
-                Grpc.BroadcastTrxResponse resp = wallet.account("xonicwallet").accountCreate(
-                        "xonicwallet",
-                        userName,
-                        accountCreationFee,
-                        Key.publicKeyOf(WIF.toPrivateKey(privateKey)),
-                        "");
-
-                if(resp.getInvoice().getStatus() == 200) {
-                    //Toasty.success(AddUseName.this, "Success!", Toast.LENGTH_SHORT, true).show();
-                    byExtras(userName, privateKey, publicKey);
-                    //byExtrasUser(userName,privateKey);
-                } else {
-                    //Toasty.warning(AddUseName.this, "Account already exists!", Toast.LENGTH_SHORT, true).show();
-                    Toast.makeText(AddUseName.this, "Account already exists!", Toast.LENGTH_SHORT).show();
-                }
->>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
                 }
             }
         });
@@ -203,13 +154,6 @@ public class AddUseName extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void setDataByExtras(){
-
-        Intent intent = getIntent();
-        String phone = intent.getStringExtra(AddPhone.PHONE);
-        String token = intent.getStringExtra(AddPhone.TOKEN);
-        //Toast.makeText(AddUseName.this,"Phone " + phone + " Token: " + token,Toast.LENGTH_LONG).show();
-    }
 
     private void VerifyAccount(String url){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
@@ -220,12 +164,29 @@ public class AddUseName extends AppCompatActivity {
                         try {
                             JSONObject jsonobject = new JSONObject(response);
                             // String a = jsonobject.get("success");
-                            String a  = jsonobject.getString("success");
-                            if(a=="true"){
+                            String a  = jsonobject.getString("code");
+                            //Toast.makeText(AddUseName.this,a, Toast.LENGTH_SHORT).show();
+                            if(a.equals("200")){
                                 String username1 = username.getText().toString();
                                 byExtras(username1,valuei.prikeypre, valuei.publicpre);
+                            }else if(a.equals("400")){
+                                Toast.makeText(AddUseName.this, "Please try again!",Toast.LENGTH_SHORT).show();
+                            }else if(a.equals("401")){
+                                Toast.makeText(AddUseName.this, "Request too frequent", Toast.LENGTH_SHORT).show();
+                            }else if(a.equals("402")){
+                                Toast.makeText(AddUseName.this, "Phone number has been registered", Toast.LENGTH_SHORT).show();
+                            }else if(a.equals("403")){
+                                Toast.makeText(AddUseName.this, "Verify code doesn't match", Toast.LENGTH_SHORT).show();
+                            }else if(a.equals("406")){
+                                Toast.makeText(AddUseName.this, "Incorrect phone nunmber", Toast.LENGTH_SHORT).show();
+                            }else if(a.equals("407")){
+                                Toast.makeText(AddUseName.this, "Invalid verify code", Toast.LENGTH_SHORT).show();
+                            }else if(a.equals("408")){
+                                Toast.makeText(AddUseName.this, "Account existed in mainnet", Toast.LENGTH_SHORT).show();
+                            }else if(a.equals("409")){
+                                Toast.makeText(AddUseName.this, "Create account failed", Toast.LENGTH_SHORT).show();
                             }else{
-                                Toast.makeText(AddUseName.this, "Account already exists!", Toast.LENGTH_LONG).show();
+                                Toast.makeText(AddUseName.this, "Please try again!" , Toast.LENGTH_SHORT).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -235,7 +196,7 @@ public class AddUseName extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(AddUseName.this, "The system is busy",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddUseName.this, "Please try again!",Toast.LENGTH_SHORT).show();
                     }
                 }
         ){
@@ -243,14 +204,17 @@ public class AddUseName extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
 
                 Map<String, String> params = new HashMap<>();
-                valuei.prikeypre  = WIF.fromPrivateKey(Key.generate());
-                valuei.publicpre = WIF.fromPublicKey(Key.publicKeyOf(WIF.toPrivateKey(valuei.prikeypre)));
-                Intent intent = getIntent();
-                String phone = intent.getStringExtra(AddPhone.PHONE);
-                String token = intent.getStringExtra(AddPhone.TOKEN);
+                if (valuei.iKey == 0){
+                    valuei.prikeypre  = WIF.fromPrivateKey(Key.generate());
+                    valuei.publicpre = WIF.fromPublicKey(Key.publicKeyOf(WIF.toPrivateKey(valuei.prikeypre)));
+                    valuei.iKey =1;
+                }
+//                Intent intent = getIntent();
+//                String phone = intent.getStringExtra(AddPhone.PHONE);
+//                String token = intent.getStringExtra(AddPhone.TOKEN);
                 String username1 = username.getText().toString();
-                params.put("mobile", phone);
-                params.put("token", token);
+                params.put("mobile", valuecode.fullphone);
+                params.put("token", valuecode.verycode);
                 params.put("account", username1);
                 params.put("pubkey", valuei.publicpre);
                 return params;

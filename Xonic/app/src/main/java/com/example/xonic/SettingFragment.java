@@ -40,18 +40,12 @@ public class SettingFragment extends ListFragment {
     ArrayList<SettingInfo> arrayListCoin;
     SettingInfoAdapter adapter;
     Button logoutid;
-<<<<<<< HEAD
     SharedPreferences sharedPreferences, sharedPreferences1;
-    TextView communityid;
     ClipboardManager clipboardManager;
     Switch sw;
     private long mLastClickTime = 0;
-=======
-    SharedPreferences sharedPreferences;
+
     TextView communityid, copyid;
-    ClipboardManager clipboardManager;
-    Switch sw;
->>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -119,7 +113,7 @@ public class SettingFragment extends ListFragment {
 
         final Switch sw = (Switch) view.findViewById(R.id.switch1);
 
-        TextView communityid = (TextView) view.findViewById(R.id.communityid);
+
         TextView copyid = (TextView) view.findViewById(R.id.copyid);
         clipboardManager = (ClipboardManager) getActivity().getSystemService(CLIPBOARD_SERVICE);
         copyid.setOnClickListener(new View.OnClickListener() {
@@ -162,11 +156,6 @@ public class SettingFragment extends ListFragment {
         });
 
         //password
-<<<<<<< HEAD
-
-=======
-        final Switch sw = (Switch) view.findViewById(R.id.switch1);
->>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
         sharedPreferences = getActivity().getSharedPreferences("pass", MODE_PRIVATE);
         String checkpass = sharedPreferences.getString("password","");
         int lengthcheck = checkpass.length();
@@ -191,12 +180,11 @@ public class SettingFragment extends ListFragment {
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     //DespositW walletFragment = new WalletFragment();
-<<<<<<< HEAD
+
                     //fragmentTransaction.replace(R.id.fragment_container, new PasswordFragment());
                     fragmentTransaction.add(R.id.fragment_container, new PasswordFragment(), "SET");
-=======
+
                     fragmentTransaction.replace(R.id.fragment_container, new PasswordFragment());
->>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
                     //fragmentTransaction.addToBackStack("Desposit and Withdraw");
                     fragmentTransaction.commit();
                 } else {

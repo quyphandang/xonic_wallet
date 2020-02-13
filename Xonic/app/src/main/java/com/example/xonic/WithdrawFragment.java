@@ -8,10 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
-<<<<<<< HEAD
+
 import android.view.inputmethod.InputMethodManager;
-=======
->>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -41,11 +39,9 @@ import static com.example.xonic.MainAccount.wallet;
 public class WithdrawFragment extends Fragment {
     EditText userreceive, amount, memoid;
     Button backid, allbalance, nextid;
-<<<<<<< HEAD
+
     LinearLayout mainwith;
     private long mLastClickTime = 0;
-=======
->>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -68,18 +64,18 @@ public class WithdrawFragment extends Fragment {
         backid.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-<<<<<<< HEAD
+
 //                userreceive.onEditorAction(EditorInfo.IME_ACTION_DONE);
 //                amount.onEditorAction(EditorInfo.IME_ACTION_DONE);
 //                memoid.onEditorAction(EditorInfo.IME_ACTION_DONE);
                 InputMethodManager input = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                 input.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
 
-=======
+
                 userreceive.onEditorAction(EditorInfo.IME_ACTION_DONE);
                 amount.onEditorAction(EditorInfo.IME_ACTION_DONE);
                 memoid.onEditorAction(EditorInfo.IME_ACTION_DONE);
->>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
+
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 //DespositW walletFragment = new WalletFragment();
@@ -137,17 +133,17 @@ public class WithdrawFragment extends Fragment {
                                 mLastClickTime = SystemClock.elapsedRealtime();
                                 Toast.makeText(getActivity(), "Current balance is not sufficient!", Toast.LENGTH_SHORT).show();
                             } else {
-<<<<<<< HEAD
+
 //                                userreceive.onEditorAction(EditorInfo.IME_ACTION_DONE);
 //                                amount.onEditorAction(EditorInfo.IME_ACTION_DONE);
 //                                memoid.onEditorAction(EditorInfo.IME_ACTION_DONE);
                                 InputMethodManager input = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                                 input.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
-=======
+
                                 userreceive.onEditorAction(EditorInfo.IME_ACTION_DONE);
                                 amount.onEditorAction(EditorInfo.IME_ACTION_DONE);
                                 memoid.onEditorAction(EditorInfo.IME_ACTION_DONE);
->>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
+
                                 Bundle Withdraw_Conform = new Bundle();
                                 Withdraw_Conform.putString("UserReceive", userReceive);
                                 Withdraw_Conform.putString("Amount", Amount);

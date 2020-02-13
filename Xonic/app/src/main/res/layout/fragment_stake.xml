@@ -30,12 +30,12 @@
         android:layout_marginTop="157dp"
         android:layout_marginEnd="12dp"
         android:layout_marginRight="12dp"
-        android:background="@drawable/border_imageview"
+        android:background="@drawable/border_imageview1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.958"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/swap_24dp" />
+        app:srcCompat="@drawable/swap" />
     <Button
         android:id="@+id/stakeid"
         android:layout_width="200dp"

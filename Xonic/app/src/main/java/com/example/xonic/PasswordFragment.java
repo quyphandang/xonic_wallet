@@ -5,10 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-<<<<<<< HEAD
 import android.os.SystemClock;
-=======
->>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -17,10 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-<<<<<<< HEAD
 import android.widget.LinearLayout;
-=======
->>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -57,16 +51,13 @@ public class PasswordFragment extends Fragment {
     TextView  number0, number1, number2, number3, number4, number5, number6, number7, number8, number9;
     ImageView removenumber, no1, no2, no3, no4, no5, no6;
     SharedPreferences sharedPreferences;
-<<<<<<< HEAD
     LinearLayout main;
     private long mLastClickTime = 0;
-=======
->>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_password, container, false);
-<<<<<<< HEAD
+
         main = (LinearLayout) view.findViewById(R.id.main);
         main.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,8 +65,6 @@ public class PasswordFragment extends Fragment {
 
             }
         });
-=======
->>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
 
         no1 = (ImageView) view.findViewById(R.id.no1);
         no2 = (ImageView) view.findViewById(R.id.no2);
@@ -206,15 +195,13 @@ public class PasswordFragment extends Fragment {
                     SavePass.pass = SavePass.pass.substring(0, SavePass.countPass);
                     check(SavePass.countPass);
                 } catch(Exception e) {
-<<<<<<< HEAD
+
                     if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
                         return;
                     }
                     mLastClickTime = SystemClock.elapsedRealtime();
                     Toast.makeText( getActivity(), "Set your passcode! " + SavePass.pass, Toast.LENGTH_SHORT).show();
-=======
                     Toast.makeText( getActivity(), "Set Password! " + SavePass.pass, Toast.LENGTH_SHORT).show();
->>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
                 }
                 //Toast.makeText( DatPass.this, "Số: " + String.valueOf(SavePass.countPass) + " Pass: " + SavePass.pass, Toast.LENGTH_SHORT).show();
             }
@@ -225,7 +212,7 @@ public class PasswordFragment extends Fragment {
     public void check(int count){
         if (count == 1 ){
             //Toast.makeText( DatPass.this, "1", Toast.LENGTH_SHORT).show();
-            no1.setImageResource(R.drawable.ic_full_24dp);
+            no1.setImageResource(R.drawable.ic_full_24dp2);
             no2.setImageResource(R.drawable.ic_no_24dp);
             no3.setImageResource(R.drawable.ic_no_24dp);
             no4.setImageResource(R.drawable.ic_no_24dp);
@@ -233,55 +220,52 @@ public class PasswordFragment extends Fragment {
             no6.setImageResource(R.drawable.ic_no_24dp);
         } else if (count == 2) {
             //Toast.makeText( DatPass.this, "2", Toast.LENGTH_SHORT).show();
-            no1.setImageResource(R.drawable.ic_full_24dp);
-            no2.setImageResource(R.drawable.ic_full_24dp);
+            no1.setImageResource(R.drawable.ic_full_24dp2);
+            no2.setImageResource(R.drawable.ic_full_24dp2);
             no3.setImageResource(R.drawable.ic_no_24dp);
             no4.setImageResource(R.drawable.ic_no_24dp);
             no5.setImageResource(R.drawable.ic_no_24dp);
             no6.setImageResource(R.drawable.ic_no_24dp);
         } else if (count == 3){
             //Toast.makeText( DatPass.this, "3", Toast.LENGTH_SHORT).show();
-            no1.setImageResource(R.drawable.ic_full_24dp);
-            no2.setImageResource(R.drawable.ic_full_24dp);
-            no3.setImageResource(R.drawable.ic_full_24dp);
+            no1.setImageResource(R.drawable.ic_full_24dp2);
+            no2.setImageResource(R.drawable.ic_full_24dp2);
+            no3.setImageResource(R.drawable.ic_full_24dp2);
             no4.setImageResource(R.drawable.ic_no_24dp);
             no5.setImageResource(R.drawable.ic_no_24dp);
             no6.setImageResource(R.drawable.ic_no_24dp);
         } else if (count == 4){
             //Toast.makeText( DatPass.this, "4", Toast.LENGTH_SHORT).show();
-            no1.setImageResource(R.drawable.ic_full_24dp);
-            no2.setImageResource(R.drawable.ic_full_24dp);
-            no3.setImageResource(R.drawable.ic_full_24dp);
-            no4.setImageResource(R.drawable.ic_full_24dp);
+            no1.setImageResource(R.drawable.ic_full_24dp2);
+            no2.setImageResource(R.drawable.ic_full_24dp2);
+            no3.setImageResource(R.drawable.ic_full_24dp2);
+            no4.setImageResource(R.drawable.ic_full_24dp2);
             no5.setImageResource(R.drawable.ic_no_24dp);
             no6.setImageResource(R.drawable.ic_no_24dp);
         } else if (count == 5){
             //Toast.makeText( DatPass.this, "5", Toast.LENGTH_SHORT).show();
-            no1.setImageResource(R.drawable.ic_full_24dp);
-            no2.setImageResource(R.drawable.ic_full_24dp);
-            no3.setImageResource(R.drawable.ic_full_24dp);
-            no4.setImageResource(R.drawable.ic_full_24dp);
-            no5.setImageResource(R.drawable.ic_full_24dp);
+            no1.setImageResource(R.drawable.ic_full_24dp2);
+            no2.setImageResource(R.drawable.ic_full_24dp2);
+            no3.setImageResource(R.drawable.ic_full_24dp2);
+            no4.setImageResource(R.drawable.ic_full_24dp2);
+            no5.setImageResource(R.drawable.ic_full_24dp2);
             no6.setImageResource(R.drawable.ic_no_24dp);
         } else if (count == 6){
             //Toast.makeText( DatPass.this, "6", Toast.LENGTH_SHORT).show();
-            no1.setImageResource(R.drawable.ic_full_24dp);
-            no2.setImageResource(R.drawable.ic_full_24dp);
-            no3.setImageResource(R.drawable.ic_full_24dp);
-            no4.setImageResource(R.drawable.ic_full_24dp);
-            no5.setImageResource(R.drawable.ic_full_24dp);
-            no6.setImageResource(R.drawable.ic_full_24dp);
+            no1.setImageResource(R.drawable.ic_full_24dp2);
+            no2.setImageResource(R.drawable.ic_full_24dp2);
+            no3.setImageResource(R.drawable.ic_full_24dp2);
+            no4.setImageResource(R.drawable.ic_full_24dp2);
+            no5.setImageResource(R.drawable.ic_full_24dp2);
+            no6.setImageResource(R.drawable.ic_full_24dp2);
 
             if (SavePass.next == 1){
                 SavePass.checkPass = SavePass.pass;
                 SavePass.pass = "";
                 SavePass.next = 2;
                 SavePass.countPass = 0;
-<<<<<<< HEAD
                 Toast.makeText( getActivity(), "Confirm your passcode", Toast.LENGTH_SHORT).show();
-=======
                 Toast.makeText( getActivity(), "Confirm passwork", Toast.LENGTH_SHORT).show();
->>>>>>> c68ef5f1fcf79d836162ea73097f8dd015eb4071
                 no1.setImageResource(R.drawable.ic_no_24dp);
                 no2.setImageResource(R.drawable.ic_no_24dp);
                 no3.setImageResource(R.drawable.ic_no_24dp);

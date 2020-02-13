@@ -86,6 +86,7 @@ public class ImportPrivateKey extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), MainAccount.class);
         intent.putExtra(USERNAME,userName);
         intent.putExtra(PRIVATEKEY,privateKey);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 }
